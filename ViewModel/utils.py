@@ -1,4 +1,5 @@
 import re
+import math
 
 
 def preprocessing(text: str):
@@ -28,9 +29,23 @@ def safe_add(a_dict: dict, key: str, value: float):
 
 
 def merge_two_dict(a_dict: dict, b_dict: dict):
+    """
+    :param a_dict: dict
+    :param b_dict: dict
+    :return: merge two dict together. If they have the same key, sum up the two values
+    """
     for key in b_dict.keys():
         a_dict = safe_add(a_dict, key, b_dict[key])
     return a_dict
+
+
+def tf_idf(tf, df):
+    """
+    :param tf: term frequency
+    :param df: document frequency
+    :return: TF-IDF value
+    """
+    return (1 + math.log10(tf)) * math.log10(1e5 / df)
 
 
 def film_convert_list_to_dict(film_info: list):

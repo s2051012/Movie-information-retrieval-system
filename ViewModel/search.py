@@ -1,4 +1,3 @@
-import re
 import math
 from ViewModel import utils
 from Model import db_search_interface as db
@@ -49,12 +48,20 @@ class Searcher():
         return utils.film_convert_list_to_dict(db.film_information(id))
 
     def default_search(self, query: str):
+        """
+        :param query: query text
+        :return: an OrderedDict contains (film_id: its score)
+        """
         score = self.search_by_film_name(query)
         score = utils.merge_two_dict(score, self.search_by_actor(query))
         score = utils.merge_two_dict(score, self.search_by_director(query))
         return OrderedDict(sorted(score.items(), key=lambda t: t[1], reverse=True))
 
     def search_by_film_name(self, query: str):
+        """
+        :param query: query text
+        :return: an OrderedDict contains (film_id: its score)
+        """
         token_list = utils.preprocessing(query)
         film_score_name = self.proximity_search(token_list, 'invert_name', max_diff=3)
         film_score_other_name = self.proximity_search(token_list, 'invert_other_name', max_diff=3)
@@ -64,6 +71,10 @@ class Searcher():
         return score
 
     def search_by_actor(self, query: str):
+        """
+        :param query: query text
+        :return: an OrderedDict contains (film_id: its score)
+        """
         token_list = utils.preprocessing(query)
         film_score_actor = self.proximity_search(token_list, 'invert_actor', max_diff=2)
 
@@ -71,6 +82,10 @@ class Searcher():
         return score
 
     def search_by_director(self, query: str):
+        """
+        :param query: query text
+        :return: an OrderedDict contains (film_id: its score)
+        """
         token_list = utils.preprocessing(query)
         film_score_director = self.proximity_search(token_list, 'invert_director', max_diff=2)
 
@@ -78,10 +93,19 @@ class Searcher():
         return score
 
     def search_by_description(self, query: str):
-        pass
+        """
+        :param query: query text
+        :return: an OrderedDict contains (film_id: its score)
+        """
+        token_list = utils.preprocessing(query)
+        tf_idf = dict()
+        for token in token_list:
+            temp = sorted(self.calculate_description_tfidf(token).items(), key=lambda t: t[1], reverse=True)
+            tf_idf = utils.merge_two_dict(tf_idf, dict(temp[:30]))  # beam search top-30
+
+        return OrderedDict(sorted(tf_idf.items(), key=lambda t: t[1], reverse=True))
 
     # 下面的函数都不是外部接口，不建议调用
-
     def proximity_search(self, token_list: list, which_table: str, max_diff=3, weight=10.0, decay=0.5):
         """
         :param query: query
@@ -144,6 +168,23 @@ class Searcher():
 
         return candidate_dict
 
+    def calculate_description_tfidf(self, token: str):
+        token_inverted_index = db.invert_data('invert_des', token)
+        tf = dict()  # term frequency, (document id: tf)
+        df = 0  # document frequency
+        for (sql_primary_key, film_id, token, position) in token_inverted_index:
+            if film_id not in tf.keys():
+                df += 1
+                tf[film_id] = 1
+            else:
+                tf[film_id] += 1
+
+        tf_idf = dict()
+        for film_id in tf:
+            tf_idf[film_id] = utils.tf_idf(tf[film_id], df)
+        return tf_idf
+
+
     def linear_merge(self, list1, list2, pointer1, pointer2, max_diff):
         """
         :param list1: list of position
@@ -161,3 +202,7 @@ class Searcher():
             return self.linear_merge(list1, list2, pointer1, pointer2 + 1, max_diff)
         else:
             return self.linear_merge(list1, list2, pointer1 + 1, pointer2, max_diff)  # tail recursion
+
+
+s = Searcher()
+print(s.search_by_description('pollster stumbles on a family'))
