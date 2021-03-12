@@ -12,6 +12,7 @@ def preprocessing(text: str):
     words_list = [word for word in words_list if word != '']  # remove empty str
     return words_list
 
+
 def film_convert_list_to_dict(film_info: list):
     """
     :param film_info: a list extracted from Database
