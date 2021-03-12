@@ -27,7 +27,7 @@ class Searcher():
                     break
         return filtered_films
 
-    def proximity_search(self, query: str, which_table: str):
+    def proximity_search(self, query: str, which_table: str, max_diff=1):
         # 邻近搜索
         """
         :param query: query
@@ -45,9 +45,9 @@ class Searcher():
             list1 = db.invert_data(which_table, t1)
             list2 = db.invert_data(which_table, t2)
             if i == 0:
-                candidate_set = set(self.search_candidate_document(list1, list2))
+                candidate_set = set(self.search_candidate_document(list1, list2, max_diff))
             else:
-                can_list = self.search_candidate_document(list1, list2)
+                can_list = self.search_candidate_document(list1, list2, max_diff)
                 candidate_set = set(can_list).intersection(candidate_set)
         return candidate_set
 
@@ -61,7 +61,7 @@ class Searcher():
 
     # 下面的函数都不是外部接口，不建议调用
 
-    def search_candidate_document(self, list1, list2):
+    def search_candidate_document(self, list1, list2, max_diff=1):
         """
         :param list1: list/tuple of tuples (primary key, document id, token, position)
         :param list2: list/tuple of tuples (primary key, document id, token, position)
@@ -77,7 +77,7 @@ class Searcher():
             if document_id1 == document_id2:
                 position1 = list1[pointer1][3]
                 position2 = list2[pointer2][3]
-                if abs(int(position1) - int(position2)) <= 1:
+                if abs(int(position1) - int(position2)) <= max_diff:
                     candidate_list.append(document_id1)
             document_id1 = int(document_id1.replace('tt', ''))
             document_id2 = int(document_id2.replace('tt', ''))
