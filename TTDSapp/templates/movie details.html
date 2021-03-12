@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>movie details</title>>
+    <meta http-equiv="content-type" content="text/html" ; charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../static/searchbar.css" type="text/css"></link>
+<!--    <link href="http://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">-->
+
+
+    <link rel="stylesheet" href="../static/layui/css/layui.css" type="text/css">></link>
+    <script type="text/javascript" src="layui/layui.all.js"></script>
+
+
+</head>
+
+<body background="../static/background.png">
+
+    <div class="layui-container">
+        <!-- search -->
+        <div class="layui-row">
+            <div class="layui-col-md12">
+                <div class="search bar3">
+                    <form>
+                        <input type="text" placeholder="search movies">
+                        <button type="button" class="layui-btn">
+                            <i class="layui-icon" style="font-size: 25px">&#xe609;</i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- movie details -->
+
+        <!-- name + general info   &   rating + gross-->
+        =
+        <div class="layui-row">
+            <!-- name + general info -->
+            <div class="layui-col-md6">
+                <p style="line-height:2.4;color:rgb(218, 187, 12); font-size:30px">
+                    {{detail_film.name}}
+                    <!-- name，对应数据库字段：Film.name -->
+                </p>
+                <p style="line-height:2.4; color:rgb(108, 131, 133); font-size:15px">
+                    {{detail_film.time}} |
+                    <!-- time，对应数据库字段：Film.time -->
+                    {{film_genres}} |
+                    <!-- genres，对应数据库字段：Film.genres -->
+                    {{film_country}}  |
+                    <!-- country，对应数据库字段：Film.country -->
+                    {{detail_film.date}}
+                    <!-- date，对应数据库字段：Film.date(前四个字符，年份/全写也成) -->
+                </p>
+            </div>
+            <!-- rating + gross  -->
+            <div class="layui-col-md3">
+                <div class="layui-raw">
+                    <!-- rating  -->
+                    <div class="layui-col-md5">
+                        <div class="layui-raw">
+                            <div class="layui-col-md4">
+                                <i class="layui-icon layui-icon-rate-half" style="font-size: 30px; color: #cfc63e;"></i>
+                            </div>
+                            <div class="layui-col-md6" style="font-size: 26px; color: #719e9e;">
+                                {{detail_film.rating_value}}
+                                <!-- score，对应数据库字段：Film.rating_value -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="layui-col-md7">
+                        <div class="layui-raw">
+                            <div class="layui-col-md4">
+                                <i class="layui-icon layui-icon-note" style="font-size: 30px; color: #3ec7be;"></i>
+                            </div>
+                            <div class="layui-col-md6" style="font-size: 18px;">
+                                <a href="{{detail_film.more_reviews_url}}">
+                                    <!-- 跳转到评论页面，对应数据库字段：Film.more_reviews_url -->
+                                    {{detail_film.rating_count}}
+                                    <!-- rating_count，对应数据库字段：Film.rating_count -->
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- gross  -->
+                    <div class="layui-col-md5 layui-col-md-offset5">
+                        <div class="layui-raw">
+                            <div class="layui-col-md4">
+                                <i class="layui-icon layui-icon-chart-screen" style="font-size: 30px; color: #7fca5c;"></i>
+                            </div>
+                            <div class="layui-col-md6" style="font-size: 18px; color: #719e9e;">
+                                ${% if detail_film.gross %}
+                                    {{detail_film.gross}}
+                                {% else %}
+                                    No Records
+                                {% endif %}
+                                <!-- gross，对应数据库字段：Film.gross -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+
+        <!-- main part -->
+        <div class="layui-row">
+
+            <!-- image  -->
+            <div class="layui-col-md3">
+                <img src="{{detail_film.image}}" width="230" height="330">
+                <!-- image，对应对数据字段：Film.image -->
+            </div>
+
+            <!-- text  -->
+            <div class="layui-col-md7" style="background-color: rgba(169, 169, 169, 0.13);">
+                <p style="line-height:3; color:rgb(165, 187, 189); font-size:15px">
+                    <span style="color: rgb(218, 187, 12);">&nbsp;&nbsp;OtherName : &nbsp;
+                    </span>{{detail_film.other_name}}
+                    <!-- otherName，对应数据库字段：Film.otherName  -->
+                </p>
+                <p style="line-height:3; color:rgb(165, 187, 189); font-size:15px">
+                    <span style="color: rgb(218, 187, 12);">&nbsp;&nbsp;Actor:  &nbsp;
+                    </span> {{film_actors}}
+                    <!-- Actor，对应数据库字段：Actors.actorName  -->
+                </p>
+                <p style="line-height:3; color:rgb(165, 187, 189); font-size:15px">
+                    <span style="color: rgb(218, 187, 12);">&nbsp;&nbsp;Director : &nbsp;
+                    </span> {{film_director.director_name}}
+                    <!-- director，对应数据库字段：Directors.directorName  -->
+                </p>
+                <p style="line-height:3; color:rgb(165, 187, 189); font-size:15px">
+                    <span style="color: rgb(218, 187, 12);">&nbsp;&nbsp;Language : &nbsp;
+                    </span>{{film_languages}}
+                    <!-- otherName，对应数据库字段：Film.otherName  -->
+                </p>
+                <p style="line-height:3; color:rgb(165, 187, 189); font-size:15px">
+                    <span style="color: rgb(218, 187, 12);">&nbsp;&nbsp;Production : &nbsp;
+                    </span> {{film_productions}}
+                    <!-- otherName，对应数据库字段：Film.otherName  -->
+                </p>
+                <p style="line-height:3; color:rgb(165, 187, 189); font-size:15px">
+                    <span style="color: rgb(218, 187, 12);">&nbsp;&nbsp;Key words : &nbsp;
+                    </span> {{film_keywords}}
+                    <!-- otherName，对应数据库字段：Film.otherName  -->
+                </p>
+
+            </div>
+
+
+        </div>
+
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+
+        <div class="layui-raw">
+            <div class="layui-col-md9" style="line-height:2.4; color:rgb(165, 187, 189); font-size:15px">
+                {% if detail_film.description %}
+                    {{detail_film.description}}
+                {% else %}
+                    No Records
+                {% endif %}
+                <!-- description，对应数据库字段：Film.description  -->
+            </div>
+        </div>
+
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+
+
+
+        <!-- 轮播图片 -->
+<!--        <div class="layui-row">-->
+<!--            <div class="layui-carousel" id="test1">-->
+<!--                <div carousel-item>-->
+<!--&lt;!&ndash;                    {% if carousel_num == 1 %}&ndash;&gt;-->
+<!--                    <div>-->
+<!--                        {% for photo in film_photos %}-->
+<!--                            <div class="layui-col-md4">-->
+<!--                                <img src="{{photo}}" width="230" height="330">-->
+<!--                            </div>-->
+<!--                        <p>{{photo}}</p>-->
+<!--                        {% endfor %}-->
+<!--                    </div>-->
+<!--&lt;!&ndash;                    {% endif %}&ndash;&gt;-->
+
+<!--&lt;!&ndash;                    <div>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <div class="layui-col-md4">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <img src="../static/test2.jpg" width="230" height="330">&ndash;&gt;-->
+<!--&lt;!&ndash;                            &lt;!&ndash; photos，对应对数据字段：Film.photos &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
+
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <script src="../static/layui/layui.js"></script>-->
+<!--            <script>-->
+<!--                layui.use('carousel', function() {-->
+<!--                    var carousel = layui.carousel;-->
+<!--                    //建造实例-->
+<!--                    carousel.render({-->
+<!--                        elem: '#test1',-->
+<!--                        width: '60%' //设置容器宽度-->
+<!--                            ,-->
+<!--                        arrow: 'always' //始终显示箭头-->
+<!--                            //,anim: 'updown' //切换动画方式-->
+<!--                    });-->
+<!--                });-->
+<!--            </script>-->
+<!--        </div>-->
+
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+
+
+        <!-- storyline -->
+        <div class="layui-raw">
+            <p style="line-height:3; color:rgb(218, 187, 12); font-size:30px">
+                Storyline
+            </p>
+            <p class="layui-col-md9" style="line-height:2.2; color:rgb(165, 187, 189); font-size:15px">
+                {{detail_film.storyline}}
+                <!-- sotryline，对应数据库字段：Film.stroyline -->
+            </p>
+        </div>
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+    </div>
+
+
+
+</body>
+
+</html>

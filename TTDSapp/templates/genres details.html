@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>genres details</title>>
+    <meta http-equiv="content-type" content="text/html" ; charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../static/searchbar.css" type="text/css"></link>
+<!--    <link href="http://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">-->
+
+
+    <link rel="stylesheet" href="../static/layui/css/layui.css" type="text/css">></link>
+    <script type="text/javascript" src="../static/layui/layui.all.js"></script>
+
+
+</head>
+
+<body background="../static/background.png">
+
+    <div class="layui-container">
+        <!-- search -->
+        <div class="layui-row">
+            <div class="layui-col-md12">
+                <div class="search bar3">
+                    <form>
+                        <input type="text" placeholder="search movies">
+                        <button type="button" class="layui-btn">
+                            <i class="layui-icon" style="font-size: 25px">&#xe609;</i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- country -->
+        <div class="layui-row">
+            <div style="color: rgb(118, 159, 160);">
+                Country :&nbsp;
+                <span class="layui-breadcrumb" lay-separator=" | " style="visibility: visible;">
+                    <a href="{{url_for('show_country_films',countryName = 'China')}}" >China</a><span lay-separator="">|</span>
+                <a href="{{url_for('show_country_films',countryName = 'USA')}}">USA</a><span lay-separator="">|</span>
+                <a href="{{url_for('show_country_films',countryName = 'UK')}}">UK</a><span lay-separator="">|</span>
+                <a href="{{url_for('show_country_films',countryName = 'India')}}">India</a><span lay-separator="">|</span>
+                <a href="{{url_for('show_country_films',countryName = 'Korea')}}">Korea</a><span lay-separator="">|</span>
+                <a href="{{url_for('show_country_films',countryName = 'Japan')}}">Japan</a><span lay-separator="">|</span>
+                </span>
+            </div>
+
+        </div>
+
+        <hr style="background-color:rgb(118, 155, 158); height:1px; border:none;" />
+
+        <!-- genres details -->
+
+        <div class="layui-row layui-col-space25" style="background-color: rgba(95, 158, 160, 0.219);">
+
+            <!-- col 1 -->
+            {% for film in movies %}
+            <div class="layui-col-md2">
+                <div>
+                    <img src="{{film.image}}"  width=170 height=270>
+                    <!-- image，对应对数据字段：Film.image -->
+                </div>
+                <div class="layui-col-md12 layui-col-md-offset3" style="color: rgb(118, 159, 160); font-size:18px">
+                    Score: {{film.rating_value}}
+                    <!-- score，对应数据库字段：Film.rating_value -->
+                </div>
+                <div class="layui-col-md12 layui-col-md-offset4">
+                    <a href="{{url_for('show_movie_detail',film_id = film.film_id)}}" class="layui-btn layui-btn-sm layui-btn-radius ">View</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+
+
+        <!-- 页面切换（上一页/下一页） -->
+        <div class="layui-row">
+            {% if number != 0 %}
+            <div class="layui-col-md4 layui-col-md-offset3">
+                <a href="{{url_for('show_prevpage', number = number-1)}}" class="layui-btn ">
+                    <i class="layui-icon layui-icon-left" style="font-size: 30px; color: #165752;"></i> Prev Page
+                </a>
+            </div>
+            {% endif %}
+            <div class="layui-col-md4 layui-col-md-offset1">
+                <a href="{{url_for('show_nextpage', number = number+1)}}" class="layui-btn ">
+                    Next Page
+                    <i class="layui-icon layui-icon-right" style="font-size: 30px; color: #165752;"></i>
+                </a>
+            </div>
+        </div>
+
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+    </div>>
+</body>
+
+</html>
