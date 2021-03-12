@@ -1,9 +1,22 @@
 import re
+import math
 from ViewModel import utils
 from Model import db_search_interface as db
+from collections import OrderedDict
 
 
 class Searcher():
+    """
+    Interface:
+    boolean_search_by_genre 按照给定genre进行过滤
+    search_by_id 拿到一个电影的全部信息
+    default_search 默认搜索
+    search_by_film_name 按电影名检索
+    search_by_actor 按演员检索
+    search_by_director 按导演检索
+    search_by_description 按描述检索
+    """
+
     def __init__(self):
         self.GENRE = ['comedy', 'sci-fi', 'horror', 'romance', 'action', 'thriller', 'drama', 'mystery', 'crime',
                       'animation', 'adventure', 'fantasy']
@@ -27,30 +40,6 @@ class Searcher():
                     break
         return filtered_films
 
-    def proximity_search(self, query: str, which_table: str, max_diff=1):
-        # 邻近搜索
-        """
-        :param query: query
-        :param which_table: invert_name/invert_other_name/invert_actor/invert_director/invert_des
-        :return: a set of movie id
-        """
-        query_list = utils.preprocessing(query)
-        token_pairs = []
-        for i, token in enumerate(query_list):
-            if i + 1 != len(query_list):
-                token_pairs.append((token, query_list[i + 1]))
-
-        candidate_set = set()
-        for i, (t1, t2) in enumerate(token_pairs):
-            list1 = db.invert_data(which_table, t1)
-            list2 = db.invert_data(which_table, t2)
-            if i == 0:
-                candidate_set = set(self.search_candidate_document(list1, list2, max_diff))
-            else:
-                can_list = self.search_candidate_document(list1, list2, max_diff)
-                candidate_set = set(can_list).intersection(candidate_set)
-        return candidate_set
-
     def search_by_id(self, id: str):
         # 直接从数据库上读取电影id
         """
@@ -59,26 +48,86 @@ class Searcher():
         """
         return utils.film_convert_list_to_dict(db.film_information(id))
 
+    def default_search(self, query: str):
+        score = self.search_by_film_name(query)
+        score = utils.merge_two_dict(score, self.search_by_actor(query))
+        score = utils.merge_two_dict(score, self.search_by_director(query))
+        return OrderedDict(sorted(score.items(), key=lambda t: t[1], reverse=True))
+
+    def search_by_film_name(self, query: str):
+        token_list = utils.preprocessing(query)
+        film_score_name = self.proximity_search(token_list, 'invert_name', max_diff=3)
+        film_score_other_name = self.proximity_search(token_list, 'invert_other_name', max_diff=3)
+
+        score = utils.merge_two_dict(film_score_name, film_score_other_name)
+        score = OrderedDict(sorted(score.items(), key=lambda t: t[1], reverse=True))
+        return score
+
+    def search_by_actor(self, query: str):
+        token_list = utils.preprocessing(query)
+        film_score_actor = self.proximity_search(token_list, 'invert_actor', max_diff=2)
+
+        score = OrderedDict(sorted(film_score_actor.items(), key=lambda t: t[1], reverse=True))
+        return score
+
+    def search_by_director(self, query: str):
+        token_list = utils.preprocessing(query)
+        film_score_director = self.proximity_search(token_list, 'invert_director', max_diff=2)
+
+        score = OrderedDict(sorted(film_score_director.items(), key=lambda t: t[1], reverse=True))
+        return score
+
+    def search_by_description(self, query: str):
+        pass
+
     # 下面的函数都不是外部接口，不建议调用
 
-    def search_candidate_document(self, list1, list2, max_diff=1):
+    def proximity_search(self, token_list: list, which_table: str, max_diff=3, weight=10.0, decay=0.5):
+        """
+        :param query: query
+        :param which_table: invert_name/invert_other_name/invert_actor/invert_director/invert_des
+        :return: a set of movie id
+        """
+        token_pairs = []
+        for i, token in enumerate(token_list):
+            if i + 1 != len(token_list):
+                token_pairs.append((token, token_list[i + 1]))
+
+        candidate_dict = dict()
+        for i, (t1, t2) in enumerate(token_pairs):
+            list1 = db.invert_data(which_table, t1)
+            list2 = db.invert_data(which_table, t2)
+            if i == 0:
+                candidate_dict = self.search_candidate_document(list1, list2, max_diff, weight, decay)
+            else:
+                can_dict = self.search_candidate_document(list1, list2, max_diff, weight, decay)
+                candidate_dict = utils.merge_two_dict(candidate_dict, can_dict)
+        return candidate_dict
+
+    def search_candidate_document(self, list1, list2, max_diff=3, weight=10.0, decay=0.5):
         """
         :param list1: list/tuple of tuples (primary key, document id, token, position)
         :param list2: list/tuple of tuples (primary key, document id, token, position)
+        :param max_diff: max word distance we count
+        :param weight: initial weight for score
+        :param decay: word distance decay (should be in 0 < decay < 1)
         :return: list of candidate documents
         """
-        candidate_list = []
+        candidate_dict = dict()
         pointer1 = 0
         pointer2 = 0
-        while pointer1 < len(list1) or pointer2 < len(list2):
+        while True:
             document_id1 = list1[pointer1][1]
             document_id2 = list2[pointer2][1]
 
             if document_id1 == document_id2:
-                position1 = list1[pointer1][3]
-                position2 = list2[pointer2][3]
-                if abs(int(position1) - int(position2)) <= max_diff:
-                    candidate_list.append(document_id1)
+                diff = abs(int(list1[pointer1][3]) - int(list2[pointer2][3]))
+                if diff == 1 and max_diff >= 1:
+                    candidate_dict = utils.safe_add(candidate_dict, document_id1, weight)
+                elif diff == 2 and max_diff >= 2:
+                    candidate_dict = utils.safe_add(candidate_dict, document_id1, weight ** decay)
+                elif diff == 3 and max_diff >= 3:
+                    candidate_dict = utils.safe_add(candidate_dict, document_id1, weight ** decay ** decay)
             document_id1 = int(document_id1.replace('tt', ''))
             document_id2 = int(document_id2.replace('tt', ''))
 
@@ -93,7 +142,7 @@ class Searcher():
             else:
                 pointer1 += 1
 
-        return candidate_list
+        return candidate_dict
 
     def linear_merge(self, list1, list2, pointer1, pointer2, max_diff):
         """
@@ -112,7 +161,3 @@ class Searcher():
             return self.linear_merge(list1, list2, pointer1, pointer2 + 1, max_diff)
         else:
             return self.linear_merge(list1, list2, pointer1 + 1, pointer2, max_diff)  # tail recursion
-
-
-s = Searcher()
-print(s.proximity_search('Murder, He Says', 'invert_name'))

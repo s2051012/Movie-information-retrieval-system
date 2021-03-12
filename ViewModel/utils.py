@@ -13,6 +13,26 @@ def preprocessing(text: str):
     return words_list
 
 
+def safe_add(a_dict: dict, key: str, value: float):
+    """
+    :param a_dict: a dict
+    :param key: the key of dict
+    :param value: add some value to the key's value
+    :return: a_dict
+    """
+    if key in a_dict.keys():
+        a_dict[key] += value
+    else:
+        a_dict[key] = value
+    return a_dict
+
+
+def merge_two_dict(a_dict: dict, b_dict: dict):
+    for key in b_dict.keys():
+        a_dict = safe_add(a_dict, key, b_dict[key])
+    return a_dict
+
+
 def film_convert_list_to_dict(film_info: list):
     """
     :param film_info: a list extracted from Database
