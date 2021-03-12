@@ -30,18 +30,18 @@ db.close()  # 数据库关闭--写在最后的最后
 ##下面是每一个数据库的结构：
 
 # film：film_id, actor_string, name, other_name, description, keywords, storyline, storyline_writer, storyline_writer_hyperlink, image, photos, time, date, imdb_url, rating_count, rating_value, more_reviews_url, gross
-#       电影id,     电影演员    电影名 电影别名     电影描述     电影关键字 故事情节     故事情节作者       故事情节作者超链接          海报   电影图片  时长 上映日期 imdb的链接  打分人数     评分          评分链接          票房
+#       电影id,     电影演员    电影名 电影别名     电影描述     电影关键字 故事情节     故事情节作者       故事情节作者超链接          海报   电影图片  时长 上映日期 imdb的链接  打分人数     评分          评分链接     更多评论的网址     票房
 # NOTE：取电影演员信息不要使用film表里的actor_string，该字符串用于创建actor倒排表
 
 # actors: count, actor_name, pos, film_id
 #         主键      演员名   处在演员表的第几个位置 参演电影id
 # NOTE：有些电影imdb没有记录演员名字，因此也没有出现在这个数据库里面，这一点同样适用于下面几个表
 
-# countries: count, country, film_id
-#             主键  电影生产国 电影id
-
 # directors：count，director_name，film_id
 #            主键   导演姓名        导演电影id
+
+# countries: count, country, film_id
+#             主键  电影生产国 电影id
 
 # genres：count，genres，film_id
 #         主键  电影类别  电影id

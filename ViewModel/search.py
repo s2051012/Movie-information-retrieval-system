@@ -35,8 +35,9 @@ class Searcher():
         query_list = utils.preprocessing(query)
 
     def search_by_id(self, id: str):
-        print(db.film_information('tt0000417'))
+        return utils.film_convert_list_to_dict(db.film_information(id))
         
 
 s = Searcher()
-s.search_by_id('213')
+for i, k in s.search_by_id('tt0004288').items():
+    print(i, k)
