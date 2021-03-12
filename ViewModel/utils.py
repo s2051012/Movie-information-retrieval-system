@@ -2,15 +2,18 @@ import re
 import math
 
 
-def preprocessing(text: str):
+def preprocessing(text: str, stop=None):
     """
     :param text: a piece of text
+    :param stop: if remove stop words, please give a set of stop words
     :return: Lowercase. Replace all non-English token to <space>. Then, divided by <space>.
     """
     text = text.lower()  # lowercase
     # text = re.sub('[^a-z0-9 ]', ' ', text)  # replace to <space>
     words_list = re.split("[,.-: ]+", text)  # get words list
     words_list = [word for word in words_list if word != '']  # remove empty str
+    if stop is not None:
+        words_list = [word for word in words_list if word not in stop]
     return words_list
 
 

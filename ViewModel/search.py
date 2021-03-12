@@ -1,4 +1,4 @@
-import math
+import os
 from ViewModel import utils
 from Model import db_search_interface as db
 from collections import OrderedDict
@@ -19,9 +19,13 @@ class Searcher():
     def __init__(self):
         self.GENRE = ['comedy', 'sci-fi', 'horror', 'romance', 'action', 'thriller', 'drama', 'mystery', 'crime',
                       'animation', 'adventure', 'fantasy']
+        self.stop_words = set()
+        file = open(os.path.join(utils.__file__, '..', 'englishST.txt'))
+        for line in file:
+            self.stop_words.add(line.strip())
+        file.close()
 
     def boolean_search_by_genre(self, genres: list, unfiltered_films: list):
-        # 给一个你想要的Genre列表，一个未过滤的电影表(list of dict)，返回一个过滤后的列表
         """
         :param genres: input a list of genre
         :param unfiltered_films: unfiltered list of dict. Each dict represents a film. (Should contain "id" as a str and
@@ -40,7 +44,6 @@ class Searcher():
         return filtered_films
 
     def search_by_id(self, id: str):
-        # 直接从数据库上读取电影id
         """
         :param id: film id
         :return: a dictionary represents information of this film
@@ -97,7 +100,7 @@ class Searcher():
         :param query: query text
         :return: an OrderedDict contains (film_id: its score)
         """
-        token_list = utils.preprocessing(query)
+        token_list = utils.preprocessing(query, stop=self.stop_words)
         tf_idf = dict()
         for token in token_list:
             temp = sorted(self.calculate_description_tfidf(token).items(), key=lambda t: t[1], reverse=True)
@@ -105,7 +108,10 @@ class Searcher():
 
         return OrderedDict(sorted(tf_idf.items(), key=lambda t: t[1], reverse=True))
 
-    # 下面的函数都不是外部接口，不建议调用
+    # ---------------------------------------------------------------------------------------------------
+    # The following functions are not suggested to be called. They are not interface functions!!!
+    # ---------------------------------------------------------------------------------------------------
+
     def proximity_search(self, token_list: list, which_table: str, max_diff=3, weight=10.0, decay=0.5):
         """
         :param query: query
@@ -184,7 +190,6 @@ class Searcher():
             tf_idf[film_id] = utils.tf_idf(tf[film_id], df)
         return tf_idf
 
-
     def linear_merge(self, list1, list2, pointer1, pointer2, max_diff):
         """
         :param list1: list of position
@@ -202,7 +207,3 @@ class Searcher():
             return self.linear_merge(list1, list2, pointer1, pointer2 + 1, max_diff)
         else:
             return self.linear_merge(list1, list2, pointer1 + 1, pointer2, max_diff)  # tail recursion
-
-
-s = Searcher()
-print(s.search_by_description('pollster stumbles on a family'))
