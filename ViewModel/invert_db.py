@@ -3,18 +3,7 @@
 
 import MySQLdb
 import re
-
-
-def preprocessing(text: str):
-    """
-    :param text: a piece of text
-    :return: Lowercase. Replace all non-English token to <space>. Then, divided by <space>.
-    """
-    text = text.lower()  # lowercase
-    # text = re.sub('[^a-z0-9 ]', ' ', text)  # replace to <space>
-    words_list = re.split("[,.-: ]+", text)  # get words list
-    words_list = [word for word in words_list if word != '']  # remove empty str
-    return words_list
+from ViewModel import utils
 
 
 def create_word_dir():
@@ -38,7 +27,7 @@ def create_word_dir():
         results = cursor.fetchall()
         for row in results:
             # print(preprocessing(row[1]))
-            name_list = preprocessing(row[1])
+            name_list = utils.preprocessing(row[1])
             # print("123")
             f_index = 1
             for f_name in name_list:
@@ -63,7 +52,7 @@ def create_word_dir():
         # obtain all records
         results = cursor.fetchall()
         for row in results:
-            other_name_list = preprocessing(row[1])
+            other_name_list = utils.preprocessing(row[1])
             o_index = 1
             for o_name in other_name_list:
                 o_sql = "INSERT INTO INVERT_OTHER_NAME(film_id, other_name_token, pos) VALUES ('%s', '%s', '%s')" % \
@@ -85,7 +74,7 @@ def create_word_dir():
         # obtain all records
         results = cursor.fetchall()
         for row in results:
-            description_list = preprocessing(row[1])
+            description_list = utils.preprocessing(row[1])
             d_index = 1
             for des in description_list:
                 d_sql = "INSERT INTO INVERT_DES(film_id, des_token, pos) VALUES ('%s', '%s', '%s')" % \
@@ -107,7 +96,7 @@ def create_word_dir():
         # obtain all records
         results = cursor.fetchall()
         for row in results:
-            actor_list = preprocessing(row[1])
+            actor_list = utils.preprocessing(row[1])
             a_index = 1
             for actor in actor_list:
                 a_sql = "INSERT INTO INVERT_ACTOR(film_id, actor_token, pos) VALUES ('%s', '%s', '%s')" % \
@@ -130,7 +119,7 @@ def create_word_dir():
         # obtain all records
         results = cursor.fetchall()
         for row in results:
-            director_list = preprocessing(row[1])
+            director_list = utils.preprocessing(row[1])
             dir_index = 1
             for director in director_list:
                 dir_sql = "INSERT INTO INVERT_DIRECTOR(film_id, director_token, pos) VALUES ('%s', '%s', '%s')" % \

@@ -1,5 +1,6 @@
 import re
 from ViewModel import utils
+from Model import db_search_interface as db
 
 
 class Searcher():
@@ -8,6 +9,7 @@ class Searcher():
                       'animation', 'adventure', 'fantasy']
 
     def boolean_search_by_genre(self, genres: list, unfiltered_films: list):
+        # 给我一个你想要的Genre列表，一个未过滤的电影表(list of dict)，返回一个过滤后的列表
         """
         :param genres: input a list of genre
         :param unfiltered_films: unfiltered list of dict. Each dict represents a film. (Should contain "id" as a str and
@@ -31,5 +33,10 @@ class Searcher():
         :return:
         """
         query_list = utils.preprocessing(query)
+
+    def search_by_id(self, id: str):
+        print(db.film_information('tt0000417'))
         
 
+s = Searcher()
+s.search_by_id('213')
