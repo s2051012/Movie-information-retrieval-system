@@ -27,15 +27,29 @@ class Searcher():
                     break
         return filtered_films
 
-    def proximity_search(self, query: str):
+    def proximity_search(self, query: str, which_table: str):
+        # 邻近搜索
         """
         :param query: query
-        :return:
+        :param which_table: invert_name/invert_other_name/invert_actor/invert_director/invert_des
+        :return: a set of movie id
         """
         query_list = utils.preprocessing(query)
-        a = db.invert_data('invert_name', query_list[0])
+        token_pairs = []
+        for i, token in enumerate(query_list):
+            if i + 1 != len(query_list):
+                token_pairs.append((token, query_list[i + 1]))
 
-        print(a)
+        candidate_set = set()
+        for i, (t1, t2) in enumerate(token_pairs):
+            list1 = db.invert_data(which_table, t1)
+            list2 = db.invert_data(which_table, t2)
+            if i == 0:
+                candidate_set = set(self.search_candidate_document(list1, list2))
+            else:
+                can_list = self.search_candidate_document(list1, list2)
+                candidate_set = set(can_list).intersection(candidate_set)
+        return candidate_set
 
     def search_by_id(self, id: str):
         # 直接从数据库上读取电影id
@@ -45,7 +59,42 @@ class Searcher():
         """
         return utils.film_convert_list_to_dict(db.film_information(id))
 
-    # 下面的函数不是外部接口，不建议调用
+    # 下面的函数都不是外部接口，不建议调用
+
+    def search_candidate_document(self, list1, list2):
+        """
+        :param list1: list/tuple of tuples (primary key, document id, token, position)
+        :param list2: list/tuple of tuples (primary key, document id, token, position)
+        :return: list of candidate documents
+        """
+        candidate_list = []
+        pointer1 = 0
+        pointer2 = 0
+        while pointer1 < len(list1) or pointer2 < len(list2):
+            document_id1 = list1[pointer1][1]
+            document_id2 = list2[pointer2][1]
+
+            if document_id1 == document_id2:
+                position1 = list1[pointer1][3]
+                position2 = list2[pointer2][3]
+                if abs(int(position1) - int(position2)) <= 1:
+                    candidate_list.append(document_id1)
+            document_id1 = int(document_id1.replace('tt', ''))
+            document_id2 = int(document_id2.replace('tt', ''))
+
+            if pointer1 == len(list1) - 1 and pointer2 == len(list2) - 1:
+                break
+            elif pointer1 == len(list1) - 1:
+                pointer2 += 1
+            elif pointer2 == len(list2) - 1:
+                pointer1 += 1
+            elif document_id1 >= document_id2:
+                pointer2 += 1
+            else:
+                pointer1 += 1
+
+        return candidate_list
+
     def linear_merge(self, list1, list2, pointer1, pointer2, max_diff):
         """
         :param list1: list of position
@@ -66,4 +115,4 @@ class Searcher():
 
 
 s = Searcher()
-s.proximity_search('star war')
+print(s.proximity_search('Murder, He Says', 'invert_name'))
