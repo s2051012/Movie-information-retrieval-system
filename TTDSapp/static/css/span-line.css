@@ -1,0 +1,8 @@
+.span-line a:hover {
+    text-decoration: underline;
+    color: #009688;
+}
+
+.span-line a {
+    color: #b2b8be;
+}
