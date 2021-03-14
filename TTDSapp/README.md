@@ -2,11 +2,12 @@
 
 requirements:
 
-flask
-flask_sqlalchemy
+ pip install pymysql
+ pip install flask
+ pip install flask_sqlalchemy
 
 
-需要修改config.py
+修改config.py
 
 运行:
 run app.py

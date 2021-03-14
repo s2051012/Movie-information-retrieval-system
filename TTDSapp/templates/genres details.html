@@ -83,13 +83,13 @@
         <div class="layui-row">
             {% if number != 0 %}
             <div class="layui-col-md4 layui-col-md-offset3">
-                <a href="{{url_for('show_prevpage', number = number-1)}}" class="layui-btn ">
+                <a href="{{url_for('show_prevpage', number = number-1, countryName = countryName)}}" class="layui-btn ">
                     <i class="layui-icon layui-icon-left" style="font-size: 30px; color: #165752;"></i> Prev Page
                 </a>
             </div>
             {% endif %}
             <div class="layui-col-md4 layui-col-md-offset1">
-                <a href="{{url_for('show_nextpage', number = number+1)}}" class="layui-btn ">
+                <a href="{{url_for('show_nextpage', number = number+1, countryName = countryName)}}" class="layui-btn ">
                     Next Page
                     <i class="layui-icon layui-icon-right" style="font-size: 30px; color: #165752;"></i>
                 </a>

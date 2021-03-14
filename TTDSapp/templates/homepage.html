@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>homepage</title>>
+    <meta http-equiv="content-type" content="text/html" ; charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../static/searchbar.css" type="text/css"></link>
+
+    <link rel="stylesheet" href="../static/layui/css/layui.css" type="text/css">></link>
+    <script type="text/javascript" src="layui/layui.all.js"></script>
+
+</head>
+
+<body background="../static/background.png">
+    <div class="layui-container">
+
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+
+        <!-- search -->
+        <div class="layui-row">
+            <div class="layui-col-md6 layui-col-md-offset3">
+                <div class="search bar3">
+                    <form action="http://localhost:5000/searchresults" method="POST">
+                        <input type="text" placeholder="search movies" name="Keyword">
+                        <button type="submit" class="layui-btn">
+                            <i class="layui-icon" style="font-size: 25px">&#xe609;</i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+
+
+        <!-- Top movies  -->
+        <div class="layui-row">
+            <div class="layui-col-md6">
+                <p style="line-height:2.4;color:rgb(218, 187, 12); font-size:30px">
+                    Top movies
+                </p>
+            </div>
+        </div>
+
+
+        <!-- 轮播图片 -->
+        <div class="layui-row">
+            <div class="layui-carousel" id="test1">
+                <div carousel-item>
+                    {% for i in range(0,4) %}
+                    <div>
+                        {% for n in range(7*i, 7*i+6) %}
+                        <div class="layui-col-md2">
+                            <a href="{{ranking_films[n].imdb_url}}">
+                                <!-- more_movie_details，对应数据库字段 url：Film.imdb_url -->
+                                <img src="{{ranking_films[n].image}}" width="220" height="320">
+                                <!-- image，对应对数据字段：Film.image -->
+                            </a>
+                        </div>
+                        {% endfor %}
+
+<!--                        <div class="layui-col-md2">-->
+<!--                            <a href="https://www.imdb.com/title/tt0068646/">-->
+<!--                                &lt;!&ndash; more_movie_details，对应数据库字段 url：Film.imdb_url &ndash;&gt;-->
+<!--                                <img src="../static/godfather.jpg" width="220" height="320">-->
+<!--                                &lt;!&ndash; image，对应对数据字段：Film.image &ndash;&gt;-->
+<!--                            </a>-->
+<!--                        </div>-->
+
+<!--                        <div class="layui-col-md2">-->
+<!--                            <a href="https://www.imdb.com/title/tt0068646/">-->
+<!--                                &lt;!&ndash; more_movie_details，对应数据库字段 url：Film.imdb_url &ndash;&gt;-->
+<!--                                <img src="../static/godfather.jpg" width="220" height="320">-->
+<!--                                &lt;!&ndash; image，对应对数据字段：Film.image &ndash;&gt;-->
+<!--                            </a>-->
+<!--                        </div>-->
+
+<!--                        <div class="layui-col-md2">-->
+<!--                            <a href="https://www.imdb.com/title/tt0068646/">-->
+<!--                                &lt;!&ndash; more_movie_details，对应数据库字段 url：Film.imdb_url &ndash;&gt;-->
+<!--                                <img src="../static/godfather.jpg" width="220" height="320">-->
+<!--                                &lt;!&ndash; image，对应对数据字段：Film.image &ndash;&gt;-->
+<!--                            </a>-->
+<!--                        </div>-->
+
+<!--                        <div class="layui-col-md2">-->
+<!--                            <a href="https://www.imdb.com/title/tt0068646/">-->
+<!--                                &lt;!&ndash; more_movie_details，对应数据库字段 url：Film.imdb_url &ndash;&gt;-->
+<!--                                <img src="../static/godfather.jpg" width="220" height="320">-->
+<!--                                &lt;!&ndash; image，对应对数据字段：Film.image &ndash;&gt;-->
+<!--                            </a>-->
+<!--                        </div>-->
+
+<!--                        <div class="layui-col-md2">-->
+<!--                            <a href="https://www.imdb.com/title/tt0068646/">-->
+<!--                                &lt;!&ndash; more_movie_details，对应数据库字段 url：Film.imdb_url &ndash;&gt;-->
+<!--                                <img src="../static/godfather.jpg" width="220" height="320">-->
+<!--                                &lt;!&ndash; image，对应对数据字段：Film.image &ndash;&gt;-->
+<!--                            </a>-->
+<!--                        </div>-->
+                    </div>
+                    {% endfor %}
+
+<!--                    <div>-->
+<!--                        <div class="layui-col-md2">-->
+<!--                            <a href="https://www.imdb.com/title/tt0068646/">-->
+<!--                                &lt;!&ndash; more_movie_details，对应数据库字段 url：Film.imdb_url &ndash;&gt;-->
+<!--                                <img src="../static/godfather.jpg" width="220" height="320">-->
+<!--                                &lt;!&ndash; image，对应对数据字段：Film.image &ndash;&gt;-->
+<!--                            </a>-->
+<!--                        </div>-->
+
+<!--                        <div class="layui-col-md2">-->
+<!--                            <a href="https://www.imdb.com/title/tt0068646/">-->
+<!--                                &lt;!&ndash; more_movie_details，对应数据库字段 url：Film.imdb_url &ndash;&gt;-->
+<!--                                <img src="../static/godfather.jpg" width="220" height="320">-->
+<!--                                &lt;!&ndash; image，对应对数据字段：Film.image &ndash;&gt;-->
+<!--                            </a>-->
+<!--                        </div>-->
+
+<!--                        <div class="layui-col-md2">-->
+<!--                            <a href="https://www.imdb.com/title/tt0068646/">-->
+<!--                                &lt;!&ndash; more_movie_details，对应数据库字段 url：Film.imdb_url &ndash;&gt;-->
+<!--                                <img src="../static/godfather.jpg" width="220" height="320">-->
+<!--                                &lt;!&ndash; image，对应对数据字段：Film.image &ndash;&gt;-->
+<!--                            </a>-->
+<!--                        </div>-->
+
+<!--                        <div class="layui-col-md2">-->
+<!--                            <a href="https://www.imdb.com/title/tt0068646/">-->
+<!--                                &lt;!&ndash; more_movie_details，对应数据库字段 url：Film.imdb_url &ndash;&gt;-->
+<!--                                <img src="../static/godfather.jpg" width="220" height="320">-->
+<!--                                &lt;!&ndash; image，对应对数据字段：Film.image &ndash;&gt;-->
+<!--                            </a>-->
+<!--                        </div>-->
+
+<!--                        <div class="layui-col-md2">-->
+<!--                            <a href="https://www.imdb.com/title/tt0068646/">-->
+<!--                                &lt;!&ndash; more_movie_details，对应数据库字段 url：Film.imdb_url &ndash;&gt;-->
+<!--                                <img src="../static/godfather.jpg" width="220" height="320">-->
+<!--                                &lt;!&ndash; image，对应对数据字段：Film.image &ndash;&gt;-->
+<!--                            </a>-->
+<!--                        </div>-->
+
+<!--                        <div class="layui-col-md2">-->
+<!--                            <a href="https://www.imdb.com/title/tt0068646/">-->
+<!--                                &lt;!&ndash; more_movie_details，对应数据库字段 url：Film.imdb_url &ndash;&gt;-->
+<!--                                <img src="../static/godfather.jpg" width="220" height="320">-->
+<!--                                &lt;!&ndash; image，对应对数据字段：Film.image &ndash;&gt;-->
+<!--                            </a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+<!--                    <div>-->
+<!--                        <div class="layui-col-md2">-->
+<!--                            <a href="https://www.imdb.com/title/tt0068646/">-->
+<!--                                &lt;!&ndash; more_movie_details，对应数据库字段 url：Film.imdb_url &ndash;&gt;-->
+<!--                                <img src="../static/godfather.jpg" width="220" height="320">-->
+<!--                                &lt;!&ndash; image，对应对数据字段：Film.image &ndash;&gt;-->
+<!--                            </a>-->
+<!--                        </div>-->
+
+<!--                        <div class="layui-col-md2">-->
+<!--                            <a href="https://www.imdb.com/title/tt0068646/">-->
+<!--                                &lt;!&ndash; more_movie_details，对应数据库字段 url：Film.imdb_url &ndash;&gt;-->
+<!--                                <img src="../static/godfather.jpg" width="220" height="320">-->
+<!--                                &lt;!&ndash; image，对应对数据字段：Film.image &ndash;&gt;-->
+<!--                            </a>-->
+<!--                        </div>-->
+
+<!--                        <div class="layui-col-md2">-->
+<!--                            <a href="https://www.imdb.com/title/tt0068646/">-->
+<!--                                &lt;!&ndash; more_movie_details，对应数据库字段 url：Film.imdb_url &ndash;&gt;-->
+<!--                                <img src="../static/godfather.jpg" width="220" height="320">-->
+<!--                                &lt;!&ndash; image，对应对数据字段：Film.image &ndash;&gt;-->
+<!--                            </a>-->
+<!--                        </div>-->
+
+<!--                        <div class="layui-col-md2">-->
+<!--                            <a href="https://www.imdb.com/title/tt0068646/">-->
+<!--                                &lt;!&ndash; more_movie_details，对应数据库字段 url：Film.imdb_url &ndash;&gt;-->
+<!--                                <img src="../static/godfather.jpg" width="220" height="320">-->
+<!--                                &lt;!&ndash; image，对应对数据字段：Film.image &ndash;&gt;-->
+<!--                            </a>-->
+<!--                        </div>-->
+
+<!--                        <div class="layui-col-md2">-->
+<!--                            <a href="https://www.imdb.com/title/tt0068646/">-->
+<!--                                &lt;!&ndash; more_movie_details，对应数据库字段 url：Film.imdb_url &ndash;&gt;-->
+<!--                                <img src="../static/godfather.jpg" width="220" height="320">-->
+<!--                                &lt;!&ndash; image，对应对数据字段：Film.image &ndash;&gt;-->
+<!--                            </a>-->
+<!--                        </div>-->
+
+<!--                        <div class="layui-col-md2">-->
+<!--                            <a href="https://www.imdb.com/title/tt0068646/">-->
+<!--                                &lt;!&ndash; more_movie_details，对应数据库字段 url：Film.imdb_url &ndash;&gt;-->
+<!--                                <img src="../static/godfather.jpg" width="220" height="320">-->
+<!--                                &lt;!&ndash; image，对应对数据字段：Film.image &ndash;&gt;-->
+<!--                            </a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+<!--                    <div>-->
+<!--                        <div class="layui-col-md2">-->
+<!--                            <a href="https://www.imdb.com/title/tt0068646/">-->
+<!--                                &lt;!&ndash; more_movie_details，对应数据库字段 url：Film.imdb_url &ndash;&gt;-->
+<!--                                <img src="../static/godfather.jpg" width="220" height="320">-->
+<!--                                &lt;!&ndash; image，对应对数据字段：Film.image &ndash;&gt;-->
+<!--                            </a>-->
+<!--                        </div>-->
+
+<!--                        <div class="layui-col-md2">-->
+<!--                            <a href="https://www.imdb.com/title/tt0068646/">-->
+<!--                                &lt;!&ndash; more_movie_details，对应数据库字段 url：Film.imdb_url &ndash;&gt;-->
+<!--                                <img src="../static/godfather.jpg" width="220" height="320">-->
+<!--                                &lt;!&ndash; image，对应对数据字段：Film.image &ndash;&gt;-->
+<!--                            </a>-->
+<!--                        </div>-->
+
+<!--                        <div class="layui-col-md2">-->
+<!--                            <a href="https://www.imdb.com/title/tt0068646/">-->
+<!--                                &lt;!&ndash; more_movie_details，对应数据库字段 url：Film.imdb_url &ndash;&gt;-->
+<!--                                <img src="../static/godfather.jpg" width="220" height="320">-->
+<!--                                &lt;!&ndash; image，对应对数据字段：Film.image &ndash;&gt;-->
+<!--                            </a>-->
+<!--                        </div>-->
+
+<!--                        <div class="layui-col-md2">-->
+<!--                            <a href="https://www.imdb.com/title/tt0068646/">-->
+<!--                                &lt;!&ndash; more_movie_details，对应数据库字段 url：Film.imdb_url &ndash;&gt;-->
+<!--                                <img src="../static/godfather.jpg" width="220" height="320">-->
+<!--                                &lt;!&ndash; image，对应对数据字段：Film.image &ndash;&gt;-->
+<!--                            </a>-->
+<!--                        </div>-->
+
+<!--                        <div class="layui-col-md2">-->
+<!--                            <a href="https://www.imdb.com/title/tt0068646/">-->
+<!--                                &lt;!&ndash; more_movie_details，对应数据库字段 url：Film.imdb_url &ndash;&gt;-->
+<!--                                <img src="../static/godfather.jpg" width="220" height="320">-->
+<!--                                &lt;!&ndash; image，对应对数据字段：Film.image &ndash;&gt;-->
+<!--                            </a>-->
+<!--                        </div>-->
+
+<!--                        <div class="layui-col-md2">-->
+<!--                            <a href="https://www.imdb.com/title/tt0068646/">-->
+<!--                                &lt;!&ndash; more_movie_details，对应数据库字段 url：Film.imdb_url &ndash;&gt;-->
+<!--                                <img src="../static/godfather.jpg" width="220" height="320">-->
+<!--                                &lt;!&ndash; image，对应对数据字段：Film.image &ndash;&gt;-->
+<!--                            </a>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+                </div>
+            </div>
+
+            <script src="../static/layui/layui.js"></script>
+            <script>
+                layui.use('carousel', function() {
+                    var carousel = layui.carousel;
+                    //建造实例
+                    carousel.render({
+                        elem: '#test1',
+                        width: '100%' //设置容器宽度
+                            ,
+                        arrow: 'always' //始终显示箭头
+                            //,anim: 'updown' //切换动画方式
+                    });
+                });
+            </script>
+        </div>
+
+
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+
+
+
+
+
+    </div>
+
+
+
+</body>
+
+</html>

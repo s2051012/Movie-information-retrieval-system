@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>search results</title>>
+    <meta http-equiv="content-type" content="text/html" ; charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="../static/searchbar.css" type="text/css"></link>
+
+    <link rel="stylesheet" href="../static/layui/css/layui.css" type="text/css">></link>
+    <script type="text/javascript" src="layui/layui.all.js"></script>
+
+</head>
+
+<body background="../static/background.png">
+    <div class="layui-container">
+
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+
+        <!-- search -->
+        <div class="layui-row">
+            <div class="layui-col-md6">
+                <div class="search bar3">
+                     <form action="http://localhost:5000/searchresults" method="POST">
+                        <input type="text" placeholder="search movies" name="Keyword">
+                        <button type="submit" class="layui-btn">
+                            <i class="layui-icon" style="font-size: 25px">&#xe609;</i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+
+
+
+        <!-- main part -->
+        {% for film in film_info %}
+        <div class="layui-row " style="background-color: rgba(169, 169, 169, 0.13);">
+
+            <!-- image  -->
+            <div class="layui-col-md3">
+                <img src="{{film[9]}}" width=80% height=80% style="margin: 10%;">
+                <!-- image，对应对数据字段：Film.image -->
+            </div>
+
+            <!-- text  -->
+            <div class="layui-col-md9">
+                <div class="layui-raw">
+                    <div class='layui-col-md4 layui-col-md-offset9'>
+                        <a href="{{film[13]}}" class="layui-btn " style="margin: 5%;">
+                            <!-- more_movie_details，对应数据库字段 url：Film.imdb_url -->
+                            More Movie Details
+                            <i class="layui-icon layui-icon-share" style="font-size: 30px; color: #165752;"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="layui-raw">
+                    <p style="line-height:2.2; color:rgb(165, 187, 189); font-size:15px">
+                        <span style="color: rgb(218, 187, 12);">&nbsp;Name : &nbsp;
+                            </span> {{film[2]}}
+                        <!-- Name，对应数据库字段：Film.Name  -->
+                    </p>
+                    <p style="line-height:2.2; color:rgb(165, 187, 189); font-size:15px">
+                        <span style="color: rgb(218, 187, 12);">&nbsp;Score:  &nbsp;
+                            </span> {{film[15]}}
+                        <!-- score，对应数据库字段：Film.rating_value -->
+                    </p>
+                    <p style="line-height:2.2; color:rgb(165, 187, 189); font-size:15px">
+                        <span style="color: rgb(218, 187, 12);">&nbsp;Genres: &nbsp;
+                            </span> {{film[-3]}}
+                        <!-- genres，对应数据库字段：Film.genres -->
+                    </p>
+                    <p style="line-height:2.2; color:rgb(165, 187, 189); font-size:15px">
+                        <span style="color: rgb(218, 187, 12);">&nbsp;Country:  &nbsp;
+                            </span> {{film[-4]}}
+                        <!-- country，对应数据库字段：Film.country -->
+                    </p>
+                    <p style="line-height:2.2; color:rgb(165, 187, 189); font-size:15px">
+                        <span style="color: rgb(218, 187, 12);">&nbsp;Actor:  &nbsp;
+                            </span> {{film[-6]}}
+                        <!-- Actor，对应数据库字段：Actors.actorName  -->
+                    </p>
+                    <p style="line-height:2.2; color:rgb(165, 187, 189); font-size:15px">
+                        <span style="color: rgb(218, 187, 12);">&nbsp;Director : &nbsp;
+                            </span> {{film[-5]}}
+                        <!-- director，对应数据库字段：Directors.directorName  -->
+                    </p>
+                    <p style="line-height:2.2; color:rgb(165, 187, 189); font-size:15px">
+                        <span style="color: rgb(218, 187, 12);">&nbsp;Key words : &nbsp;
+                            </span> {{film[5]}}
+                        <!-- keywords，对应数据库字段：Film.keywords  -->
+                    </p>
+                    <p style="line-height:2.2; color:rgb(165, 187, 189); font-size:15px">
+                        <span style="color: rgb(218, 187, 12);">&nbsp;Description:  &nbsp;
+                            </span> {{film[4]}}
+                        <!-- description，对应数据库字段：Film.description  -->
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+
+
+        <!-- 页面切换（上一页/下一页） -->
+<!--        <div class="layui-row">-->
+<!--            <div class="layui-col-md4 layui-col-md-offset3">-->
+<!--                <a href="" class="layui-btn ">-->
+<!--                    <i class="layui-icon layui-icon-left" style="font-size: 30px; color: #165752;"></i> Prev Page-->
+<!--                </a>-->
+<!--            </div>-->
+<!--            <div class="layui-col-md4 layui-col-md-offset1">-->
+<!--                <a href="" class="layui-btn ">-->
+<!--                    Next Page-->
+<!--                    <i class="layui-icon layui-icon-right" style="font-size: 30px; color: #165752;"></i>-->
+<!--                </a>-->
+<!--            </div>-->
+<!--        </div>-->
+
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+        <hr style="background-color:rgba(12, 12, 11, 0)">
+
+    </div>
+
+
+
+</body>
+
+</html>

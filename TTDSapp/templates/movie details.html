@@ -173,51 +173,19 @@
         <hr style="background-color:rgba(12, 12, 11, 0)">
         <hr style="background-color:rgba(12, 12, 11, 0)">
         <hr style="background-color:rgba(12, 12, 11, 0)">
+
+        <!-- photos  -->
+        <div class="layui-raw">
+            <div class="layui-col-md4 layui-col-md-offset6">
+                <a href="" class="layui-btn ">
+                    <!-- photos，对应数据库字段 url：Film.photos -->
+                    More movie photos
+                    <i class="layui-icon layui-icon-add-circle" style="font-size: 30px; color: #165752;"></i>
+                </a>
+            </div>
+        </div>
+
         <hr style="background-color:rgba(12, 12, 11, 0)">
-
-
-
-        <!-- 轮播图片 -->
-<!--        <div class="layui-row">-->
-<!--            <div class="layui-carousel" id="test1">-->
-<!--                <div carousel-item>-->
-<!--&lt;!&ndash;                    {% if carousel_num == 1 %}&ndash;&gt;-->
-<!--                    <div>-->
-<!--                        {% for photo in film_photos %}-->
-<!--                            <div class="layui-col-md4">-->
-<!--                                <img src="{{photo}}" width="230" height="330">-->
-<!--                            </div>-->
-<!--                        <p>{{photo}}</p>-->
-<!--                        {% endfor %}-->
-<!--                    </div>-->
-<!--&lt;!&ndash;                    {% endif %}&ndash;&gt;-->
-
-<!--&lt;!&ndash;                    <div>&ndash;&gt;-->
-<!--&lt;!&ndash;                        <div class="layui-col-md4">&ndash;&gt;-->
-<!--&lt;!&ndash;                            <img src="../static/test2.jpg" width="230" height="330">&ndash;&gt;-->
-<!--&lt;!&ndash;                            &lt;!&ndash; photos，对应对数据字段：Film.photos &ndash;&gt;&ndash;&gt;-->
-<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
-<!--&lt;!&ndash;                    </div>&ndash;&gt;-->
-
-<!--                </div>-->
-<!--            </div>-->
-
-<!--            <script src="../static/layui/layui.js"></script>-->
-<!--            <script>-->
-<!--                layui.use('carousel', function() {-->
-<!--                    var carousel = layui.carousel;-->
-<!--                    //建造实例-->
-<!--                    carousel.render({-->
-<!--                        elem: '#test1',-->
-<!--                        width: '60%' //设置容器宽度-->
-<!--                            ,-->
-<!--                        arrow: 'always' //始终显示箭头-->
-<!--                            //,anim: 'updown' //切换动画方式-->
-<!--                    });-->
-<!--                });-->
-<!--            </script>-->
-<!--        </div>-->
-
         <hr style="background-color:rgba(12, 12, 11, 0)">
         <hr style="background-color:rgba(12, 12, 11, 0)">
 
@@ -232,6 +200,18 @@
                 <!-- sotryline，对应数据库字段：Film.stroyline -->
             </p>
         </div>
+
+        <!-- more movie details  -->
+        <div class="layui-raw">
+            <div class="layui-col-md4 layui-col-md-offset6">
+                <a href="" class="layui-btn ">
+                    <!-- more_movie_details，对应数据库字段 url：Film.imdb_url -->
+                    More movie details
+                    <i class="layui-icon layui-icon-share" style="font-size: 30px; color: #165752;"></i>
+                </a>
+            </div>
+        </div>
+
         <hr style="background-color:rgba(12, 12, 11, 0)">
         <hr style="background-color:rgba(12, 12, 11, 0)">
         <hr style="background-color:rgba(12, 12, 11, 0)">
