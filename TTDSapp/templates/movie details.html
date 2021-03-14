@@ -2,224 +2,314 @@
 <html lang="en">
 
 <head>
-    <title>movie details</title>>
+    <title>movie details</title>
     <meta http-equiv="content-type" content="text/html" ; charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="../static/searchbar.css" type="text/css"></link>
-<!--    <link href="http://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">-->
-
-
-    <link rel="stylesheet" href="../static/layui/css/layui.css" type="text/css">></link>
+    <link rel="stylesheet" href="../static/layui/css/layui.css" type="text/css">
     <script type="text/javascript" src="layui/layui.all.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="../static/css/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/left-side.css">
+
+    <script type="text/javascript" src="../static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../static/js/jquery.slimscroll.min.js"></script>
+    <script type="text/javascript" src="../static/js/left-side-menu.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="../static/css/search.css">
+    <script type="text/javascript" src="../static/js/search.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="../static/css/span-line.css">
 
 
 </head>
 
 <body background="../static/background.png">
+    <div class="container">
+        <div class="left-side-menu" style="float:left; position: fixed;">
+            <div class="lsm-expand-btn">
+                <div class="lsm-mini-btn">
+                    <label>
+                <input type="checkbox" checked="checked">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="30" />
+                    <path class="line--1" d="M0 40h62c18 0 18-20-17 5L31 55" />
+                    <path class="line--2" d="M0 50h80" />
+                    <path class="line--3" d="M0 60h62c18 0 18 20-17-5L31 45" />
+                </svg>
+            </label>
 
-    <div class="layui-container">
-        <!-- search -->
-        <div class="layui-row">
-            <div class="layui-col-md12">
-                <div class="search bar3">
-                    <form>
-                        <input type="text" placeholder="search movies">
-                        <button type="button" class="layui-btn">
-                            <i class="layui-icon" style="font-size: 25px">&#xe609;</i>
-                        </button>
-                    </form>
+                </div>
+                <!--Menu-->
+
+            </div>
+            <div class="lsm-container">
+                <div class="lsm-scroll">
+                    <div class="lsm-sidebar">
+                        <ul>
+                            <li class="lsm-sidebar-item">
+                                <a href="genres details.html"><i class="iconfont lsm-sidebar-icon icon_1"></i><span>Action</span><i class="my-icon lsm-sidebar-more"></i></a>
+                            </li>
+                            <li class="lsm-sidebar-item">
+                                <a href="genres details.html"><i class="iconfont lsm-sidebar-icon icon_2"></i><span>Thriller</span><i class="my-icon lsm-sidebar-more"></i></a>
+                            </li>
+                            <li class="lsm-sidebar-item">
+                                <a href="genres details.html"><i class="iconfont lsm-sidebar-icon icon_3"></i><span>Drama</span><i class="my-icon lsm-sidebar-more"></i></a>
+                            </li>
+                            <li class="lsm-sidebar-item">
+                                <a href="genres details.html"><i class="iconfont lsm-sidebar-icon icon_4"></i><span>Mystery</span><i class="my-icon lsm-sidebar-more"></i></a>
+                            </li>
+                            <li class="lsm-sidebar-item">
+                                <a href="genres details.html"><i class="iconfont lsm-sidebar-icon icon_5"></i><span>Crime</span><i class="my-icon lsm-sidebar-more"></i></a>
+                            </li>
+                            <li class="lsm-sidebar-item">
+                                <a href="genres details.html"><i class="iconfont lsm-sidebar-icon icon_6"></i><span>Animation</span><i class="my-icon lsm-sidebar-more"></i></a>
+                            </li>
+                            <li class="lsm-sidebar-item">
+                                <a href="genres details.html"><i class="iconfont lsm-sidebar-icon icon_7"></i><span>Adventure</span><i class="my-icon lsm-sidebar-more"></i></a>
+                            </li>
+                            <li class="lsm-sidebar-item">
+                                <a href="genres details.html"><i class="iconfont lsm-sidebar-icon icon_8"></i><span>Fantasy</span><i class="my-icon lsm-sidebar-more"></i></a>
+                            </li>
+                            <li class="lsm-sidebar-item">
+                                <a href="genres details.html"><i class="iconfont lsm-sidebar-icon icon_9"></i><span>Comedy</span><i class="my-icon lsm-sidebar-more"></i></a>
+                            </li>
+                            <li class="lsm-sidebar-item">
+                                <a href="genres details.html"><i class="iconfont lsm-sidebar-icon icon_10"></i><span>Sci-fi</span><i class="my-icon lsm-sidebar-more"></i></a>
+                            </li>
+                            <li class="lsm-sidebar-item">
+                                <a href="genres details.html"><i class="iconfont lsm-sidebar-icon icon_11"></i><span>Horror</span><i class="my-icon lsm-sidebar-more"></i></a>
+                            </li>
+                            <li class="lsm-sidebar-item">
+                                <a href="genres details.html"><i class="iconfont lsm-sidebar-icon icon_12"></i><span>Romance</span><i class="my-icon lsm-sidebar-more"></i></a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
+
         </div>
-
-        <!-- movie details -->
-
-        <!-- name + general info   &   rating + gross-->
-        =
-        <div class="layui-row">
-            <!-- name + general info -->
-            <div class="layui-col-md6">
-                <p style="line-height:2.4;color:rgb(218, 187, 12); font-size:30px">
-                    {{detail_film.name}}
-                    <!-- name，对应数据库字段：Film.name -->
-                </p>
-                <p style="line-height:2.4; color:rgb(108, 131, 133); font-size:15px">
-                    {{detail_film.time}} |
-                    <!-- time，对应数据库字段：Film.time -->
-                    {{film_genres}} |
-                    <!-- genres，对应数据库字段：Film.genres -->
-                    {{film_country}}  |
-                    <!-- country，对应数据库字段：Film.country -->
-                    {{detail_film.date}}
-                    <!-- date，对应数据库字段：Film.date(前四个字符，年份/全写也成) -->
-                </p>
-            </div>
-            <!-- rating + gross  -->
-            <div class="layui-col-md3">
-                <div class="layui-raw">
-                    <!-- rating  -->
-                    <div class="layui-col-md5">
-                        <div class="layui-raw">
-                            <div class="layui-col-md4">
-                                <i class="layui-icon layui-icon-rate-half" style="font-size: 30px; color: #cfc63e;"></i>
-                            </div>
-                            <div class="layui-col-md6" style="font-size: 26px; color: #719e9e;">
-                                {{detail_film.rating_value}}
-                                <!-- score，对应数据库字段：Film.rating_value -->
-                            </div>
+        <div class="layui-container" style="float: right;">
+            <!-- search -->
+            <div class="layui-row">
+                <div class="layui-col-md6 layui-col-md-offset3">
+                    <div class="jq22-search-form" style="margin-left: -25%;">
+                        <div id="search-bd" class="search-bd">
+                            <ul>
+                                <li class="selected">All</li>
+                                <li>Name</li>
+                                <li>Director</li>
+                                <li>Actor</li>
+                                <li>Keywords</li>
+                            </ul>
                         </div>
-                    </div>
-
-                    <div class="layui-col-md7">
-                        <div class="layui-raw">
-                            <div class="layui-col-md4">
-                                <i class="layui-icon layui-icon-note" style="font-size: 30px; color: #3ec7be;"></i>
-                            </div>
-                            <div class="layui-col-md6" style="font-size: 18px;">
-                                <a href="{{detail_film.more_reviews_url}}">
-                                    <!-- 跳转到评论页面，对应数据库字段：Film.more_reviews_url -->
-                                    {{detail_film.rating_count}}
-                                    <!-- rating_count，对应数据库字段：Film.rating_count -->
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- gross  -->
-                    <div class="layui-col-md5 layui-col-md-offset5">
-                        <div class="layui-raw">
-                            <div class="layui-col-md4">
-                                <i class="layui-icon layui-icon-chart-screen" style="font-size: 30px; color: #7fca5c;"></i>
-                            </div>
-                            <div class="layui-col-md6" style="font-size: 18px; color: #719e9e;">
-                                ${% if detail_film.gross %}
-                                    {{detail_film.gross}}
-                                {% else %}
-                                    No Records
-                                {% endif %}
-                                <!-- gross，对应数据库字段：Film.gross -->
-                            </div>
+                        <div id="search-hd" class="search-hd">
+                            <div class="search-bg"></div>
+                            <input type="text" id="s1" class="search-input">
+                            <input type="text" id="s2" class="search-input">
+                            <input type="text" id="s3" class="search-input">
+                            <input type="text" id="s4" class="search-input">
+                            <input type="text" id="s5" class="search-input">
+                            <span class="s1 pholder">Search movies</span>
+                            <span class="s2 pholder">Search by name</span>
+                            <span class="s3 pholder">Search by director</span>
+                            <span class="s4 pholder">Search by actor</span>
+                            <span class="s5 pholder">Search by keywords</span>
+                            <a href="search results.html"><button id="submit" class="btn-search" value="search"><i class="layui-icon" style="font-size: 23px">&#xe609;</i></button></a>
                         </div>
                     </div>
                 </div>
-
-
-            </div>
-        </div>
-
-        <hr style="background-color:rgba(12, 12, 11, 0)">
-
-        <!-- main part -->
-        <div class="layui-row">
-
-            <!-- image  -->
-            <div class="layui-col-md3">
-                <img src="{{detail_film.image}}" width="230" height="330">
-                <!-- image，对应对数据字段：Film.image -->
             </div>
 
-            <!-- text  -->
-            <div class="layui-col-md7" style="background-color: rgba(169, 169, 169, 0.13);">
-                <p style="line-height:3; color:rgb(165, 187, 189); font-size:15px">
-                    <span style="color: rgb(218, 187, 12);">&nbsp;&nbsp;OtherName : &nbsp;
-                    </span>{{detail_film.other_name}}
-                    <!-- otherName，对应数据库字段：Film.otherName  -->
-                </p>
-                <p style="line-height:3; color:rgb(165, 187, 189); font-size:15px">
-                    <span style="color: rgb(218, 187, 12);">&nbsp;&nbsp;Actor:  &nbsp;
-                    </span> {{film_actors}}
-                    <!-- Actor，对应数据库字段：Actors.actorName  -->
-                </p>
-                <p style="line-height:3; color:rgb(165, 187, 189); font-size:15px">
-                    <span style="color: rgb(218, 187, 12);">&nbsp;&nbsp;Director : &nbsp;
-                    </span> {{film_director.director_name}}
-                    <!-- director，对应数据库字段：Directors.directorName  -->
-                </p>
-                <p style="line-height:3; color:rgb(165, 187, 189); font-size:15px">
-                    <span style="color: rgb(218, 187, 12);">&nbsp;&nbsp;Language : &nbsp;
-                    </span>{{film_languages}}
-                    <!-- otherName，对应数据库字段：Film.otherName  -->
-                </p>
-                <p style="line-height:3; color:rgb(165, 187, 189); font-size:15px">
-                    <span style="color: rgb(218, 187, 12);">&nbsp;&nbsp;Production : &nbsp;
-                    </span> {{film_productions}}
-                    <!-- otherName，对应数据库字段：Film.otherName  -->
-                </p>
-                <p style="line-height:3; color:rgb(165, 187, 189); font-size:15px">
-                    <span style="color: rgb(218, 187, 12);">&nbsp;&nbsp;Key words : &nbsp;
-                    </span> {{film_keywords}}
-                    <!-- otherName，对应数据库字段：Film.otherName  -->
-                </p>
+            <!-- movie details -->
+
+            <!-- name + general info   &   rating + gross-->
+            <div class="layui-row">
+
+                <!-- name + general info -->
+                <div class="layui-col-md6">
+                    <p style="line-height:2.4;color:#f5cb5c; font-size:30px">
+                        The Godfather
+                        <!-- name，对应数据库字段：Film.name -->
+                    </p>
+                    <p style="line-height:2.4; color:#b2b8be; font-size:15px">
+                        2h 55min |
+                        <!-- time，对应数据库字段：Film.time -->
+                        Crime, Drama |
+                        <!-- genres，对应数据库字段：Film.genres -->
+                        USA  |
+                        <!-- country，对应数据库字段：Film.country -->
+                        1972
+                        <!-- date，对应数据库字段：Film.date(前四个字符，年份/全写也成) -->
+                    </p>
+                </div>
+
+                <!-- rating + gross  -->
+                <div class="layui-col-md3 layui-col-md-offset1" style="margin-top: 20px;">
+                    <div class="layui-raw">
+                        <!-- rating  -->
+                        <div class="layui-col-md5">
+                            <div class="layui-raw">
+                                <div class="layui-col-md4">
+                                    <i class="layui-icon layui-icon-rate-half" style="font-size: 28px; color: #f5cb5c;"></i>
+                                </div>
+                                <div class="layui-col-md6" style="font-size: 26px; color: #b2b8be;margin-top: -5px;">
+                                    9.2
+                                    <!-- score，对应数据库字段：Film.rating_value -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="layui-col-md7">
+                            <div class="layui-raw">
+                                <div class="layui-col-md4">
+                                    <i class="layui-icon layui-icon-note" style="font-size: 30px; color: #f5cb5c;"></i>
+                                </div>
+                                <div class="layui-col-md6" style="font-size: 18px;">
+                                    <div class="span-line">
+                                        <a href="">
+                                            <!-- 跳转到评论页面，对应数据库字段：Film.more_reviews_url -->
+                                            1,615,117
+                                            <!-- rating_count，对应数据库字段：Film.rating_count -->
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- gross  -->
+                        <div class="layui-col-md5 layui-col-md-offset5">
+                            <div class="layui-raw">
+                                <div class="layui-col-md4">
+                                    <i class="layui-icon layui-icon-chart-screen" style="font-size: 30px; color: #f5cb5c;"></i>
+                                </div>
+                                <div class="layui-col-md6" style="font-size: 18px; color: #b2b8be;">
+                                    $246,120,986
+                                    <!-- gross，对应数据库字段：Film.gross -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <br>
 
             </div>
 
+            <br>
 
-        </div>
 
-        <hr style="background-color:rgba(12, 12, 11, 0)">
+            <!-- main part -->
+            <div class="layui-row">
 
-        <div class="layui-raw">
-            <div class="layui-col-md9" style="line-height:2.4; color:rgb(165, 187, 189); font-size:15px">
-                {% if detail_film.description %}
-                    {{detail_film.description}}
-                {% else %}
-                    No Records
-                {% endif %}
-                <!-- description，对应数据库字段：Film.description  -->
+                <!-- image  -->
+                <div class="layui-col-md3">
+                    <img src="../static/godfather.jpg" width="230" height="330">
+                    <!-- image，对应对数据字段：Film.image -->
+                </div>
+
+                <!-- text  -->
+                <div class="layui-col-md7" style="background-color: rgba(169, 169, 169, 0.13);">
+                    <p style="line-height:3; color:#e8eddf; font-size:15px">
+                        <span style="color: #f5cb5c;">&nbsp;&nbsp;OtherName : &nbsp;
+                    </span> Mario Puzo's The Godfather
+                        <!-- otherName，对应数据库字段：Film.otherName  -->
+                    </p>
+                    <p style="line-height:3; color:#e8eddf; font-size:15px">
+                        <span style="color: #f5cb5c;">&nbsp;&nbsp;Actor:  &nbsp;
+                    </span> Marlon Brando / Al Pacino / James Caan / Diane Keaton
+                        <!-- Actor，对应数据库字段：Actors.actorName  -->
+                    </p>
+                    <p style="line-height:3; color:#e8eddf; font-size:15px">
+                        <span style="color: #f5cb5c;">&nbsp;&nbsp;Director : &nbsp;
+                    </span> Francis Ford Coppola
+                        <!-- director，对应数据库字段：Directors.directorName  -->
+                    </p>
+                    <p style="line-height:3; color:#e8eddf; font-size:15px">
+                        <span style="color: #f5cb5c;">&nbsp;&nbsp;Language : &nbsp;
+                    </span> English / Italian / Latin
+                        <!-- Language，对应数据库字段：Film.languages  -->
+                    </p>
+                    <p style="line-height:3; color:#e8eddf; font-size:15px">
+                        <span style="color: #f5cb5c;">&nbsp;&nbsp;Production : &nbsp;
+                    </span> Paramount Pictures / Alfran Productions
+                        <!-- production，对应数据库字段：Productions.productionName  -->
+                    </p>
+                    <p style="line-height:3; color:#e8eddf; font-size:15px">
+                        <span style="color: #f5cb5c;">&nbsp;&nbsp;Key words : &nbsp;
+                    </span> crime family / mafia / patriarch / organized crime / rise to power
+                        <!-- keywords，对应数据库字段：Film.keywords  -->
+                    </p>
+
+                </div>
+
+                <br>
             </div>
-        </div>
 
-        <hr style="background-color:rgba(12, 12, 11, 0)">
-        <hr style="background-color:rgba(12, 12, 11, 0)">
-        <hr style="background-color:rgba(12, 12, 11, 0)">
 
-        <!-- photos  -->
-        <div class="layui-raw">
-            <div class="layui-col-md4 layui-col-md-offset6">
-                <a href="" class="layui-btn ">
-                    <!-- photos，对应数据库字段 url：Film.photos -->
-                    More movie photos
-                    <i class="layui-icon layui-icon-add-circle" style="font-size: 30px; color: #165752;"></i>
-                </a>
+
+            <div class="layui-raw">
+                <div class="layui-col-md10" style="line-height:2.4; color: #b2b8be; font-size:15px;text-align:justify">
+                    The Godfather is a movie starring Marlon Brando, Al Pacino, and James Caan. An organized crime dynasty's aging patriarch transfers control of his clandestine empire to his reluctant son.
+                    <!-- description，对应数据库字段：Film.description  -->
+                </div>
             </div>
-        </div>
-
-        <hr style="background-color:rgba(12, 12, 11, 0)">
-        <hr style="background-color:rgba(12, 12, 11, 0)">
-        <hr style="background-color:rgba(12, 12, 11, 0)">
+            <hr style="background-color:rgba(12, 12, 11, 0)">
+            <hr style="background-color:rgba(12, 12, 11, 0)">
 
 
-        <!-- storyline -->
-        <div class="layui-raw">
-            <p style="line-height:3; color:rgb(218, 187, 12); font-size:30px">
-                Storyline
-            </p>
-            <p class="layui-col-md9" style="line-height:2.2; color:rgb(165, 187, 189); font-size:15px">
-                {{detail_film.storyline}}
-                <!-- sotryline，对应数据库字段：Film.stroyline -->
-            </p>
-        </div>
-
-        <!-- more movie details  -->
-        <div class="layui-raw">
-            <div class="layui-col-md4 layui-col-md-offset6">
-                <a href="" class="layui-btn ">
-                    <!-- more_movie_details，对应数据库字段 url：Film.imdb_url -->
-                    More movie details
-                    <i class="layui-icon layui-icon-share" style="font-size: 30px; color: #165752;"></i>
-                </a>
+            <!-- photos  -->
+            <div class="layui-raw" style="margin-right: 13px;">
+                <div class="layui-col-md4 layui-col-md-offset8">
+                    <a href="" class="layui-btn " style="color: #e8eddf;">
+                        <!-- photos，对应数据库字段 url：Film.photos -->
+                        <span style="margin-left: -2%;margin-right: 3%; font-size: 15px;">More movie photos</span>
+                        <i class="layui-icon layui-icon-picture" style="font-size: 20px; color: #e8eddf;margin-right: -5px;"></i>
+                    </a>
+                </div>
             </div>
-        </div>
 
-        <hr style="background-color:rgba(12, 12, 11, 0)">
-        <hr style="background-color:rgba(12, 12, 11, 0)">
-        <hr style="background-color:rgba(12, 12, 11, 0)">
-        <hr style="background-color:rgba(12, 12, 11, 0)">
-        <hr style="background-color:rgba(12, 12, 11, 0)">
-        <hr style="background-color:rgba(12, 12, 11, 0)">
-        <hr style="background-color:rgba(12, 12, 11, 0)">
-        <hr style="background-color:rgba(12, 12, 11, 0)">
+            <hr style="background-color:rgba(12, 12, 11, 0)">
+            <hr style="background-color:rgba(12, 12, 11, 0)">
+
+            <!-- storyline -->
+            <div class="layui-raw">
+                <p style="line-height:3; color:#f5cb5c; font-size:30px">
+                    Storyline
+                </p>
+                <p class="layui-col-md10" style="line-height:2.2; color: #b2b8be; font-size:15px;text-align:justify">
+                    The Godfather "Don" Vito Corleone is the head of the Corleone mafia family in New York. He is at the event of his daughter's wedding. Michael, Vito's youngest son and a decorated WW II Marine is also present at the wedding. Michael seems to be uninterested
+                    in being a part of the family business. Vito is a powerful man, and is kind to all those who give him respect but is ruthless against those who do not. But when a powerful and treacherous rival wants to sell drugs and needs the Don's
+                    influence for the same, Vito refuses to do it. What follows is a clash between Vito's fading old values and the new ways which may cause Michael to do the thing he was most reluctant in doing and wage a mob war against all the other
+                    mafia families which could tear the Corleone family apart.
+                    <!-- sotryline，对应数据库字段：Film.stroyline -->
+                </p>
+            </div>
+            <hr style="background-color:rgba(12, 12, 11, 0)">
+            <hr style="background-color:rgba(12, 12, 11, 0)">
+            <hr style="background-color:rgba(12, 12, 11, 0)">
+
+
+            <!-- more movie details  -->
+            <div class="layui-raw">
+                <div class="layui-col-md4 layui-col-md-offset8">
+                    <a href="" class="layui-btn " style="color: #e8eddf; margin-top: 20px;">
+                        <!-- more_movie_details，对应数据库字段 url：Film.imdb_url -->
+                        <span style="margin-left: -2%;margin-right: 3%; font-size: 15px;">More movie details</span>
+                        <i class="layui-icon layui-icon-about" style="font-size: 20px; color: #e8eddf;margin-right: -5px;"></i>
+
+                    </a>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                </div>
+            </div>
+
+        </div>
     </div>
 
 

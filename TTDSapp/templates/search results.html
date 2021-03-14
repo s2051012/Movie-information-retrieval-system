@@ -2,147 +2,843 @@
 <html lang="en">
 
 <head>
-    <title>search results</title>>
+    <title>search results</title>
     <meta http-equiv="content-type" content="text/html" ; charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="../static/searchbar.css" type="text/css"></link>
-
-    <link rel="stylesheet" href="../static/layui/css/layui.css" type="text/css">></link>
+    <link rel="stylesheet" href="../static/layui/css/layui.css" type="text/css">
     <script type="text/javascript" src="layui/layui.all.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="../static/css/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/left-side.css">
+
+    <script type="text/javascript" src="../static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../static/js/jquery.slimscroll.min.js"></script>
+    <script type="text/javascript" src="../static/js/left-side-menu.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="../static/css/search.css">
+    <script type="text/javascript" src="../static/js/search.js"></script>
 
 </head>
 
 <body background="../static/background.png">
-    <div class="layui-container">
+    <div class="container">
+        <div class="left-side-menu" style="float:left;">
+            <div class="lsm-expand-btn">
+                <div class="lsm-mini-btn">
+                    <label>
+                <input type="checkbox" checked="checked">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="50" cy="50" r="30" />
+                    <path class="line--1" d="M0 40h62c18 0 18-20-17 5L31 55" />
+                    <path class="line--2" d="M0 50h80" />
+                    <path class="line--3" d="M0 60h62c18 0 18 20-17-5L31 45" />
+                </svg>
+            </label>
 
-        <hr style="background-color:rgba(12, 12, 11, 0)">
-        <hr style="background-color:rgba(12, 12, 11, 0)">
-        <hr style="background-color:rgba(12, 12, 11, 0)">
-        <hr style="background-color:rgba(12, 12, 11, 0)">
-        <hr style="background-color:rgba(12, 12, 11, 0)">
-        <hr style="background-color:rgba(12, 12, 11, 0)">
-        <hr style="background-color:rgba(12, 12, 11, 0)">
-        <hr style="background-color:rgba(12, 12, 11, 0)">
-        <hr style="background-color:rgba(12, 12, 11, 0)">
+                </div>
+                <!--Menu-->
 
-        <!-- search -->
-        <div class="layui-row">
-            <div class="layui-col-md6">
-                <div class="search bar3">
-                     <form action="http://localhost:5000/searchresults" method="POST">
-                        <input type="text" placeholder="search movies" name="Keyword">
-                        <button type="submit" class="layui-btn">
-                            <i class="layui-icon" style="font-size: 25px">&#xe609;</i>
-                        </button>
-                    </form>
+            </div>
+            <div class="lsm-container">
+                <div class="lsm-scroll">
+                    <div class="lsm-sidebar">
+                        <ul>
+                            <li class="lsm-sidebar-item">
+                                <a href="genres details.html"><i class="iconfont lsm-sidebar-icon icon_1"></i><span>Action</span><i class="my-icon lsm-sidebar-more"></i></a>
+                            </li>
+                            <li class="lsm-sidebar-item">
+                                <a href="genres details.html"><i class="iconfont lsm-sidebar-icon icon_2"></i><span>Thriller</span><i class="my-icon lsm-sidebar-more"></i></a>
+                            </li>
+                            <li class="lsm-sidebar-item">
+                                <a href="genres details.html"><i class="iconfont lsm-sidebar-icon icon_3"></i><span>Drama</span><i class="my-icon lsm-sidebar-more"></i></a>
+                            </li>
+                            <li class="lsm-sidebar-item">
+                                <a href="genres details.html"><i class="iconfont lsm-sidebar-icon icon_4"></i><span>Mystery</span><i class="my-icon lsm-sidebar-more"></i></a>
+                            </li>
+                            <li class="lsm-sidebar-item">
+                                <a href="genres details.html"><i class="iconfont lsm-sidebar-icon icon_5"></i><span>Crime</span><i class="my-icon lsm-sidebar-more"></i></a>
+                            </li>
+                            <li class="lsm-sidebar-item">
+                                <a href="genres details.html"><i class="iconfont lsm-sidebar-icon icon_6"></i><span>Animation</span><i class="my-icon lsm-sidebar-more"></i></a>
+                            </li>
+                            <li class="lsm-sidebar-item">
+                                <a href="genres details.html"><i class="iconfont lsm-sidebar-icon icon_7"></i><span>Adventure</span><i class="my-icon lsm-sidebar-more"></i></a>
+                            </li>
+                            <li class="lsm-sidebar-item">
+                                <a href="genres details.html"><i class="iconfont lsm-sidebar-icon icon_8"></i><span>Fantasy</span><i class="my-icon lsm-sidebar-more"></i></a>
+                            </li>
+                            <li class="lsm-sidebar-item">
+                                <a href="genres details.html"><i class="iconfont lsm-sidebar-icon icon_9"></i><span>Comedy</span><i class="my-icon lsm-sidebar-more"></i></a>
+                            </li>
+                            <li class="lsm-sidebar-item">
+                                <a href="genres details.html"><i class="iconfont lsm-sidebar-icon icon_10"></i><span>Sci-fi</span><i class="my-icon lsm-sidebar-more"></i></a>
+                            </li>
+                            <li class="lsm-sidebar-item">
+                                <a href="genres details.html"><i class="iconfont lsm-sidebar-icon icon_11"></i><span>Horror</span><i class="my-icon lsm-sidebar-more"></i></a>
+                            </li>
+                            <li class="lsm-sidebar-item">
+                                <a href="genres details.html"><i class="iconfont lsm-sidebar-icon icon_12"></i><span>Romance</span><i class="my-icon lsm-sidebar-more"></i></a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
+
         </div>
+        <div class="layui-container" style="float: right;">
 
-
-        <hr style="background-color:rgba(12, 12, 11, 0)">
-        <hr style="background-color:rgba(12, 12, 11, 0)">
-        <hr style="background-color:rgba(12, 12, 11, 0)">
-
-
-
-        <!-- main part -->
-        {% for film in film_info %}
-        <div class="layui-row " style="background-color: rgba(169, 169, 169, 0.13);">
-
-            <!-- image  -->
-            <div class="layui-col-md3">
-                <img src="{{film[9]}}" width=80% height=80% style="margin: 10%;">
-                <!-- image，对应对数据字段：Film.image -->
+            <!-- search -->
+            <div class="layui-row">
+                <div class="layui-col-md6 layui-col-md-offset3">
+                    <div class="jq22-search-form" style="margin-left: -15%;">
+                        <div id="search-bd" class="search-bd">
+                            <ul>
+                                <li class="selected">All</li>
+                                <li>Name</li>
+                                <li>Director</li>
+                                <li>Actor</li>
+                                <li>Keywords</li>
+                            </ul>
+                        </div>
+                        <div id="search-hd" class="search-hd">
+                            <div class="search-bg"></div>
+                            <input type="text" id="s1" class="search-input">
+                            <input type="text" id="s2" class="search-input">
+                            <input type="text" id="s3" class="search-input">
+                            <input type="text" id="s4" class="search-input">
+                            <input type="text" id="s5" class="search-input">
+                            <span class="s1 pholder">Search movies</span>
+                            <span class="s2 pholder">Search by name</span>
+                            <span class="s3 pholder">Search by director</span>
+                            <span class="s4 pholder">Search by actor</span>
+                            <span class="s5 pholder">Search by keywords</span>
+                            <a href="search results.html"><button id="submit" class="btn-search" value="search"><i class="layui-icon" style="font-size: 23px">&#xe609;</i></button></a>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- text  -->
-            <div class="layui-col-md9">
-                <div class="layui-raw">
-                    <div class='layui-col-md4 layui-col-md-offset9'>
-                        <a href="{{film[13]}}" class="layui-btn " style="margin: 5%;">
-                            <!-- more_movie_details，对应数据库字段 url：Film.imdb_url -->
-                            More Movie Details
-                            <i class="layui-icon layui-icon-share" style="font-size: 30px; color: #165752;"></i>
-                        </a>
+            <!-- Top movies  -->
+            <div class="layui-row">
+                <div class="layui-col-md6" style="margin-top: -30px;">
+                    <p style="line-height:2.4;color:#f5cb5c; font-size:30px">
+                        Search results:
+                    </p>
+                </div>
+            </div>
+
+            <!-- main part -->
+            <div class="layui-row " style="background-color: rgba(169, 169, 169, 0.13);width: 90%">
+
+                <!-- image  -->
+                <div class="layui-col-md3">
+                    <img src="../static/godfather.jpg" width=80% height=80% style="margin: 10%;">
+                    <!-- image，对应对数据字段：Film.image -->
+                </div>
+
+                <!-- text  -->
+                <div class="layui-col-md9">
+
+                    <div class="layui-raw" style="margin-top: 10px;">
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Name : &nbsp;
+                            </span> The Godfather
+                            <!-- Name，对应数据库字段：Film.Name  -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Score:  &nbsp;
+                            </span> 9.2
+                            <!-- score，对应数据库字段：Film.rating_value -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Genres: &nbsp;
+                            </span> Crime / Drama
+                            <!-- genres，对应数据库字段：Film.genres -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Country:  &nbsp;
+                            </span> USA
+                            <!-- country，对应数据库字段：Film.country -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Actor:  &nbsp;
+                            </span> Marlon Brando / Al Pacino / James Caan / Diane Keaton
+                            <!-- Actor，对应数据库字段：Actors.actorName  -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Director : &nbsp;
+                            </span> Francis Ford Coppola
+                            <!-- director，对应数据库字段：Directors.directorName  -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Key words : &nbsp;
+                            </span> crime family / mafia / patriarch / organized crime / rise to power
+                            <!-- keywords，对应数据库字段：Film.keywords  -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; text-align: justify; margin-right: 20px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Description:  &nbsp;
+                            </span>The Godfather is a movie starring Marlon Brando, Al Pacino, and James Caan. An organized crime dynasty's aging patriarch transfers control of his clandestine empire to his reluctant son.
+                            <!-- description，对应数据库字段：Film.description  -->
+                        </p>
+                    </div>
+
+                    <div class="layui-raw">
+                        <div class="layui-col-md4 layui-col-md-offset8">
+                            <a href="movie details.html" class="layui-btn " style="margin: 5%; float: right;">
+                                <!-- more_movie_details，对应数据库字段 url：Film.imdb_url -->
+                                <p>More movie details
+                                    <i class="layui-icon layui-icon-about" style="font-size: 20px; color: #e8eddf;margin-right: -5px;"></i>
+                                </p>
+                            </a>
+                        </div>
                     </div>
                 </div>
 
-                <div class="layui-raw">
-                    <p style="line-height:2.2; color:rgb(165, 187, 189); font-size:15px">
-                        <span style="color: rgb(218, 187, 12);">&nbsp;Name : &nbsp;
-                            </span> {{film[2]}}
-                        <!-- Name，对应数据库字段：Film.Name  -->
-                    </p>
-                    <p style="line-height:2.2; color:rgb(165, 187, 189); font-size:15px">
-                        <span style="color: rgb(218, 187, 12);">&nbsp;Score:  &nbsp;
-                            </span> {{film[15]}}
-                        <!-- score，对应数据库字段：Film.rating_value -->
-                    </p>
-                    <p style="line-height:2.2; color:rgb(165, 187, 189); font-size:15px">
-                        <span style="color: rgb(218, 187, 12);">&nbsp;Genres: &nbsp;
-                            </span> {{film[-3]}}
-                        <!-- genres，对应数据库字段：Film.genres -->
-                    </p>
-                    <p style="line-height:2.2; color:rgb(165, 187, 189); font-size:15px">
-                        <span style="color: rgb(218, 187, 12);">&nbsp;Country:  &nbsp;
-                            </span> {{film[-4]}}
-                        <!-- country，对应数据库字段：Film.country -->
-                    </p>
-                    <p style="line-height:2.2; color:rgb(165, 187, 189); font-size:15px">
-                        <span style="color: rgb(218, 187, 12);">&nbsp;Actor:  &nbsp;
-                            </span> {{film[-6]}}
-                        <!-- Actor，对应数据库字段：Actors.actorName  -->
-                    </p>
-                    <p style="line-height:2.2; color:rgb(165, 187, 189); font-size:15px">
-                        <span style="color: rgb(218, 187, 12);">&nbsp;Director : &nbsp;
-                            </span> {{film[-5]}}
-                        <!-- director，对应数据库字段：Directors.directorName  -->
-                    </p>
-                    <p style="line-height:2.2; color:rgb(165, 187, 189); font-size:15px">
-                        <span style="color: rgb(218, 187, 12);">&nbsp;Key words : &nbsp;
-                            </span> {{film[5]}}
-                        <!-- keywords，对应数据库字段：Film.keywords  -->
-                    </p>
-                    <p style="line-height:2.2; color:rgb(165, 187, 189); font-size:15px">
-                        <span style="color: rgb(218, 187, 12);">&nbsp;Description:  &nbsp;
-                            </span> {{film[4]}}
-                        <!-- description，对应数据库字段：Film.description  -->
-                    </p>
+            </div>
+
+
+            <hr style="background-color:rgba(12, 12, 11, 0)">
+            <hr style="background-color:rgba(12, 12, 11, 0)">
+            <hr style="background-color:rgba(12, 12, 11, 0)">
+            <hr style="background-color:rgba(12, 12, 11, 0)">
+            <hr style="background-color:rgba(12, 12, 11, 0)">
+
+
+            <!-- main part -->
+            <div class="layui-row " style="background-color: rgba(169, 169, 169, 0.13);width: 90%">
+
+                <!-- image  -->
+                <div class="layui-col-md3">
+                    <img src="../static/godfather.jpg" width=80% height=80% style="margin: 10%;">
+                    <!-- image，对应对数据字段：Film.image -->
+                </div>
+
+                <!-- text  -->
+                <div class="layui-col-md9">
+
+                    <div class="layui-raw" style="margin-top: 10px;">
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Name : &nbsp;
+                            </span> The Godfather
+                            <!-- Name，对应数据库字段：Film.Name  -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Score:  &nbsp;
+                            </span> 9.2
+                            <!-- score，对应数据库字段：Film.rating_value -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Genres: &nbsp;
+                            </span> Crime / Drama
+                            <!-- genres，对应数据库字段：Film.genres -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Country:  &nbsp;
+                            </span> USA
+                            <!-- country，对应数据库字段：Film.country -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Actor:  &nbsp;
+                            </span> Marlon Brando / Al Pacino / James Caan / Diane Keaton
+                            <!-- Actor，对应数据库字段：Actors.actorName  -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Director : &nbsp;
+                            </span> Francis Ford Coppola
+                            <!-- director，对应数据库字段：Directors.directorName  -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Key words : &nbsp;
+                            </span> crime family / mafia / patriarch / organized crime / rise to power
+                            <!-- keywords，对应数据库字段：Film.keywords  -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; text-align: justify; margin-right: 20px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Description:  &nbsp;
+                            </span>The Godfather is a movie starring Marlon Brando, Al Pacino, and James Caan. An organized crime dynasty's aging patriarch transfers control of his clandestine empire to his reluctant son.
+                            <!-- description，对应数据库字段：Film.description  -->
+                        </p>
+                    </div>
+
+                    <div class="layui-raw">
+                        <div class="layui-col-md4 layui-col-md-offset8">
+                            <a href="movie details.html" class="layui-btn " style="margin: 5%; float: right;">
+                                <!-- more_movie_details，对应数据库字段 url：Film.imdb_url -->
+                                <p>More movie details
+                                    <i class="layui-icon layui-icon-about" style="font-size: 20px; color: #e8eddf;margin-right: -5px;"></i>
+                                </p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+            <hr style="background-color:rgba(12, 12, 11, 0)">
+            <hr style="background-color:rgba(12, 12, 11, 0)">
+            <hr style="background-color:rgba(12, 12, 11, 0)">
+            <hr style="background-color:rgba(12, 12, 11, 0)">
+            <hr style="background-color:rgba(12, 12, 11, 0)">
+
+
+            <!-- main part -->
+            <div class="layui-row " style="background-color: rgba(169, 169, 169, 0.13);width: 90%">
+
+                <!-- image  -->
+                <div class="layui-col-md3">
+                    <img src="../static/godfather.jpg" width=80% height=80% style="margin: 10%;">
+                    <!-- image，对应对数据字段：Film.image -->
+                </div>
+
+                <!-- text  -->
+                <div class="layui-col-md9">
+
+                    <div class="layui-raw" style="margin-top: 10px;">
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Name : &nbsp;
+                            </span> The Godfather
+                            <!-- Name，对应数据库字段：Film.Name  -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Score:  &nbsp;
+                            </span> 9.2
+                            <!-- score，对应数据库字段：Film.rating_value -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Genres: &nbsp;
+                            </span> Crime / Drama
+                            <!-- genres，对应数据库字段：Film.genres -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Country:  &nbsp;
+                            </span> USA
+                            <!-- country，对应数据库字段：Film.country -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Actor:  &nbsp;
+                            </span> Marlon Brando / Al Pacino / James Caan / Diane Keaton
+                            <!-- Actor，对应数据库字段：Actors.actorName  -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Director : &nbsp;
+                            </span> Francis Ford Coppola
+                            <!-- director，对应数据库字段：Directors.directorName  -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Key words : &nbsp;
+                            </span> crime family / mafia / patriarch / organized crime / rise to power
+                            <!-- keywords，对应数据库字段：Film.keywords  -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; text-align: justify; margin-right: 20px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Description:  &nbsp;
+                            </span>The Godfather is a movie starring Marlon Brando, Al Pacino, and James Caan. An organized crime dynasty's aging patriarch transfers control of his clandestine empire to his reluctant son.
+                            <!-- description，对应数据库字段：Film.description  -->
+                        </p>
+                    </div>
+
+                    <div class="layui-raw">
+                        <div class="layui-col-md4 layui-col-md-offset8">
+                            <a href="movie details.html" class="layui-btn " style="margin: 5%; float: right;">
+                                <!-- more_movie_details，对应数据库字段 url：Film.imdb_url -->
+                                <p>More movie details
+                                    <i class="layui-icon layui-icon-about" style="font-size: 20px; color: #e8eddf;margin-right: -5px;"></i>
+                                </p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <hr style="background-color:rgba(12, 12, 11, 0)">
+            <hr style="background-color:rgba(12, 12, 11, 0)">
+            <hr style="background-color:rgba(12, 12, 11, 0)">
+            <hr style="background-color:rgba(12, 12, 11, 0)">
+            <hr style="background-color:rgba(12, 12, 11, 0)">
+
+
+            <!-- main part -->
+            <div class="layui-row " style="background-color: rgba(169, 169, 169, 0.13);width: 90%">
+
+                <!-- image  -->
+                <div class="layui-col-md3">
+                    <img src="../static/godfather.jpg" width=80% height=80% style="margin: 10%;">
+                    <!-- image，对应对数据字段：Film.image -->
+                </div>
+
+                <!-- text  -->
+                <div class="layui-col-md9">
+
+                    <div class="layui-raw" style="margin-top: 10px;">
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Name : &nbsp;
+                            </span> The Godfather
+                            <!-- Name，对应数据库字段：Film.Name  -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Score:  &nbsp;
+                            </span> 9.2
+                            <!-- score，对应数据库字段：Film.rating_value -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Genres: &nbsp;
+                            </span> Crime / Drama
+                            <!-- genres，对应数据库字段：Film.genres -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Country:  &nbsp;
+                            </span> USA
+                            <!-- country，对应数据库字段：Film.country -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Actor:  &nbsp;
+                            </span> Marlon Brando / Al Pacino / James Caan / Diane Keaton
+                            <!-- Actor，对应数据库字段：Actors.actorName  -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Director : &nbsp;
+                            </span> Francis Ford Coppola
+                            <!-- director，对应数据库字段：Directors.directorName  -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Key words : &nbsp;
+                            </span> crime family / mafia / patriarch / organized crime / rise to power
+                            <!-- keywords，对应数据库字段：Film.keywords  -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; text-align: justify; margin-right: 20px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Description:  &nbsp;
+                            </span>The Godfather is a movie starring Marlon Brando, Al Pacino, and James Caan. An organized crime dynasty's aging patriarch transfers control of his clandestine empire to his reluctant son.
+                            <!-- description，对应数据库字段：Film.description  -->
+                        </p>
+                    </div>
+
+                    <div class="layui-raw">
+                        <div class="layui-col-md4 layui-col-md-offset8">
+                            <a href="movie details.html" class="layui-btn " style="margin: 5%; float: right;">
+                                <!-- more_movie_details，对应数据库字段 url：Film.imdb_url -->
+                                <p>More movie details
+                                    <i class="layui-icon layui-icon-about" style="font-size: 20px; color: #e8eddf;margin-right: -5px;"></i>
+                                </p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <hr style="background-color:rgba(12, 12, 11, 0)">
+            <hr style="background-color:rgba(12, 12, 11, 0)">
+            <hr style="background-color:rgba(12, 12, 11, 0)">
+            <hr style="background-color:rgba(12, 12, 11, 0)">
+            <hr style="background-color:rgba(12, 12, 11, 0)">
+
+
+            <!-- main part -->
+            <div class="layui-row " style="background-color: rgba(169, 169, 169, 0.13);width: 90%">
+
+                <!-- image  -->
+                <div class="layui-col-md3">
+                    <img src="../static/godfather.jpg" width=80% height=80% style="margin: 10%;">
+                    <!-- image，对应对数据字段：Film.image -->
+                </div>
+
+                <!-- text  -->
+                <div class="layui-col-md9">
+
+                    <div class="layui-raw" style="margin-top: 10px;">
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Name : &nbsp;
+                            </span> The Godfather
+                            <!-- Name，对应数据库字段：Film.Name  -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Score:  &nbsp;
+                            </span> 9.2
+                            <!-- score，对应数据库字段：Film.rating_value -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Genres: &nbsp;
+                            </span> Crime / Drama
+                            <!-- genres，对应数据库字段：Film.genres -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Country:  &nbsp;
+                            </span> USA
+                            <!-- country，对应数据库字段：Film.country -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Actor:  &nbsp;
+                            </span> Marlon Brando / Al Pacino / James Caan / Diane Keaton
+                            <!-- Actor，对应数据库字段：Actors.actorName  -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Director : &nbsp;
+                            </span> Francis Ford Coppola
+                            <!-- director，对应数据库字段：Directors.directorName  -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Key words : &nbsp;
+                            </span> crime family / mafia / patriarch / organized crime / rise to power
+                            <!-- keywords，对应数据库字段：Film.keywords  -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; text-align: justify; margin-right: 20px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Description:  &nbsp;
+                            </span>The Godfather is a movie starring Marlon Brando, Al Pacino, and James Caan. An organized crime dynasty's aging patriarch transfers control of his clandestine empire to his reluctant son.
+                            <!-- description，对应数据库字段：Film.description  -->
+                        </p>
+                    </div>
+
+                    <div class="layui-raw">
+                        <div class="layui-col-md4 layui-col-md-offset8">
+                            <a href="movie details.html" class="layui-btn " style="margin: 5%; float: right;">
+                                <!-- more_movie_details，对应数据库字段 url：Film.imdb_url -->
+                                <p>More movie details
+                                    <i class="layui-icon layui-icon-about" style="font-size: 20px; color: #e8eddf;margin-right: -5px;"></i>
+                                </p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <hr style="background-color:rgba(12, 12, 11, 0)">
+            <hr style="background-color:rgba(12, 12, 11, 0)">
+            <hr style="background-color:rgba(12, 12, 11, 0)">
+            <hr style="background-color:rgba(12, 12, 11, 0)">
+            <hr style="background-color:rgba(12, 12, 11, 0)">
+
+
+            <!-- main part -->
+            <div class="layui-row " style="background-color: rgba(169, 169, 169, 0.13);width: 90%">
+
+                <!-- image  -->
+                <div class="layui-col-md3">
+                    <img src="../static/godfather.jpg" width=80% height=80% style="margin: 10%;">
+                    <!-- image，对应对数据字段：Film.image -->
+                </div>
+
+                <!-- text  -->
+                <div class="layui-col-md9">
+
+                    <div class="layui-raw" style="margin-top: 10px;">
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Name : &nbsp;
+                            </span> The Godfather
+                            <!-- Name，对应数据库字段：Film.Name  -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Score:  &nbsp;
+                            </span> 9.2
+                            <!-- score，对应数据库字段：Film.rating_value -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Genres: &nbsp;
+                            </span> Crime / Drama
+                            <!-- genres，对应数据库字段：Film.genres -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Country:  &nbsp;
+                            </span> USA
+                            <!-- country，对应数据库字段：Film.country -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Actor:  &nbsp;
+                            </span> Marlon Brando / Al Pacino / James Caan / Diane Keaton
+                            <!-- Actor，对应数据库字段：Actors.actorName  -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Director : &nbsp;
+                            </span> Francis Ford Coppola
+                            <!-- director，对应数据库字段：Directors.directorName  -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Key words : &nbsp;
+                            </span> crime family / mafia / patriarch / organized crime / rise to power
+                            <!-- keywords，对应数据库字段：Film.keywords  -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; text-align: justify; margin-right: 20px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Description:  &nbsp;
+                            </span>The Godfather is a movie starring Marlon Brando, Al Pacino, and James Caan. An organized crime dynasty's aging patriarch transfers control of his clandestine empire to his reluctant son.
+                            <!-- description，对应数据库字段：Film.description  -->
+                        </p>
+                    </div>
+
+                    <div class="layui-raw">
+                        <div class="layui-col-md4 layui-col-md-offset8">
+                            <a href="movie details.html" class="layui-btn " style="margin: 5%; float: right;">
+                                <!-- more_movie_details，对应数据库字段 url：Film.imdb_url -->
+                                <p>More movie details
+                                    <i class="layui-icon layui-icon-about" style="font-size: 20px; color: #e8eddf;margin-right: -5px;"></i>
+                                </p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <hr style="background-color:rgba(12, 12, 11, 0)">
+            <hr style="background-color:rgba(12, 12, 11, 0)">
+            <hr style="background-color:rgba(12, 12, 11, 0)">
+            <hr style="background-color:rgba(12, 12, 11, 0)">
+            <hr style="background-color:rgba(12, 12, 11, 0)">
+
+
+            <!-- main part -->
+            <div class="layui-row " style="background-color: rgba(169, 169, 169, 0.13);width: 90%">
+
+                <!-- image  -->
+                <div class="layui-col-md3">
+                    <img src="../static/godfather.jpg" width=80% height=80% style="margin: 10%;">
+                    <!-- image，对应对数据字段：Film.image -->
+                </div>
+
+                <!-- text  -->
+                <div class="layui-col-md9">
+
+                    <div class="layui-raw" style="margin-top: 10px;">
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Name : &nbsp;
+                            </span> The Godfather
+                            <!-- Name，对应数据库字段：Film.Name  -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Score:  &nbsp;
+                            </span> 9.2
+                            <!-- score，对应数据库字段：Film.rating_value -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Genres: &nbsp;
+                            </span> Crime / Drama
+                            <!-- genres，对应数据库字段：Film.genres -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Country:  &nbsp;
+                            </span> USA
+                            <!-- country，对应数据库字段：Film.country -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Actor:  &nbsp;
+                            </span> Marlon Brando / Al Pacino / James Caan / Diane Keaton
+                            <!-- Actor，对应数据库字段：Actors.actorName  -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Director : &nbsp;
+                            </span> Francis Ford Coppola
+                            <!-- director，对应数据库字段：Directors.directorName  -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Key words : &nbsp;
+                            </span> crime family / mafia / patriarch / organized crime / rise to power
+                            <!-- keywords，对应数据库字段：Film.keywords  -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; text-align: justify; margin-right: 20px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Description:  &nbsp;
+                            </span>The Godfather is a movie starring Marlon Brando, Al Pacino, and James Caan. An organized crime dynasty's aging patriarch transfers control of his clandestine empire to his reluctant son.
+                            <!-- description，对应数据库字段：Film.description  -->
+                        </p>
+                    </div>
+
+                    <div class="layui-raw">
+                        <div class="layui-col-md4 layui-col-md-offset8">
+                            <a href="movie details.html" class="layui-btn " style="margin: 5%; float: right;">
+                                <!-- more_movie_details，对应数据库字段 url：Film.imdb_url -->
+                                <p>More movie details
+                                    <i class="layui-icon layui-icon-about" style="font-size: 20px; color: #e8eddf;margin-right: -5px;"></i>
+                                </p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <hr style="background-color:rgba(12, 12, 11, 0)">
+            <hr style="background-color:rgba(12, 12, 11, 0)">
+            <hr style="background-color:rgba(12, 12, 11, 0)">
+            <hr style="background-color:rgba(12, 12, 11, 0)">
+            <hr style="background-color:rgba(12, 12, 11, 0)">
+
+
+            <!-- main part -->
+            <div class="layui-row " style="background-color: rgba(169, 169, 169, 0.13);width: 90%">
+
+                <!-- image  -->
+                <div class="layui-col-md3">
+                    <img src="../static/godfather.jpg" width=80% height=80% style="margin: 10%;">
+                    <!-- image，对应对数据字段：Film.image -->
+                </div>
+
+                <!-- text  -->
+                <div class="layui-col-md9">
+
+                    <div class="layui-raw" style="margin-top: 10px;">
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Name : &nbsp;
+                            </span> The Godfather
+                            <!-- Name，对应数据库字段：Film.Name  -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Score:  &nbsp;
+                            </span> 9.2
+                            <!-- score，对应数据库字段：Film.rating_value -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Genres: &nbsp;
+                            </span> Crime / Drama
+                            <!-- genres，对应数据库字段：Film.genres -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Country:  &nbsp;
+                            </span> USA
+                            <!-- country，对应数据库字段：Film.country -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Actor:  &nbsp;
+                            </span> Marlon Brando / Al Pacino / James Caan / Diane Keaton
+                            <!-- Actor，对应数据库字段：Actors.actorName  -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Director : &nbsp;
+                            </span> Francis Ford Coppola
+                            <!-- director，对应数据库字段：Directors.directorName  -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Key words : &nbsp;
+                            </span> crime family / mafia / patriarch / organized crime / rise to power
+                            <!-- keywords，对应数据库字段：Film.keywords  -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; text-align: justify; margin-right: 20px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Description:  &nbsp;
+                            </span>The Godfather is a movie starring Marlon Brando, Al Pacino, and James Caan. An organized crime dynasty's aging patriarch transfers control of his clandestine empire to his reluctant son.
+                            <!-- description，对应数据库字段：Film.description  -->
+                        </p>
+                    </div>
+
+                    <div class="layui-raw">
+                        <div class="layui-col-md4 layui-col-md-offset8">
+                            <a href="movie details.html" class="layui-btn " style="margin: 5%; float: right;">
+                                <!-- more_movie_details，对应数据库字段 url：Film.imdb_url -->
+                                <p>More movie details
+                                    <i class="layui-icon layui-icon-about" style="font-size: 20px; color: #e8eddf;margin-right: -5px;"></i>
+                                </p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <hr style="background-color:rgba(12, 12, 11, 0)">
+            <hr style="background-color:rgba(12, 12, 11, 0)">
+            <hr style="background-color:rgba(12, 12, 11, 0)">
+            <hr style="background-color:rgba(12, 12, 11, 0)">
+            <hr style="background-color:rgba(12, 12, 11, 0)">
+
+
+            <!-- main part -->
+            <div class="layui-row " style="background-color: rgba(169, 169, 169, 0.13);width: 90%">
+
+                <!-- image  -->
+                <div class="layui-col-md3">
+                    <img src="../static/godfather.jpg" width=80% height=80% style="margin: 10%;">
+                    <!-- image，对应对数据字段：Film.image -->
+                </div>
+
+                <!-- text  -->
+                <div class="layui-col-md9">
+
+                    <div class="layui-raw" style="margin-top: 10px;">
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Name : &nbsp;
+                            </span> The Godfather
+                            <!-- Name，对应数据库字段：Film.Name  -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Score:  &nbsp;
+                            </span> 9.2
+                            <!-- score，对应数据库字段：Film.rating_value -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Genres: &nbsp;
+                            </span> Crime / Drama
+                            <!-- genres，对应数据库字段：Film.genres -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Country:  &nbsp;
+                            </span> USA
+                            <!-- country，对应数据库字段：Film.country -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Actor:  &nbsp;
+                            </span> Marlon Brando / Al Pacino / James Caan / Diane Keaton
+                            <!-- Actor，对应数据库字段：Actors.actorName  -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Director : &nbsp;
+                            </span> Francis Ford Coppola
+                            <!-- director，对应数据库字段：Directors.directorName  -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Key words : &nbsp;
+                            </span> crime family / mafia / patriarch / organized crime / rise to power
+                            <!-- keywords，对应数据库字段：Film.keywords  -->
+                        </p>
+                        <p style="line-height:2.2; font-size:15px; text-align: justify; margin-right: 20px; color: #e8eddf;">
+                            <span style="color: #f5cb5c;">Description:  &nbsp;
+                            </span>The Godfather is a movie starring Marlon Brando, Al Pacino, and James Caan. An organized crime dynasty's aging patriarch transfers control of his clandestine empire to his reluctant son.
+                            <!-- description，对应数据库字段：Film.description  -->
+                        </p>
+                    </div>
+
+                    <div class="layui-raw">
+                        <div class="layui-col-md4 layui-col-md-offset8">
+                            <a href="movie details.html" class="layui-btn " style="margin: 5%; float: right;">
+                                <!-- more_movie_details，对应数据库字段 url：Film.imdb_url -->
+                                <p>More movie details
+                                    <i class="layui-icon layui-icon-about" style="font-size: 20px; color: #e8eddf;margin-right: -5px;"></i>
+                                </p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            <hr style="background-color:rgba(12, 12, 11, 0)">
+            <hr style="background-color:rgba(12, 12, 11, 0)">
+            <hr style="background-color:rgba(12, 12, 11, 0)">
+            <hr style="background-color:rgba(12, 12, 11, 0)">
+
+
+            <!-- 页面切换（上一页/下一页） -->
+            <div class="layui-row">
+                <div class="layui-col-md4" style=" margin-left: 25%;">
+                    <a href="" class="layui-btn">
+                        <i class="layui-icon layui-icon-left" style="font-size: 20px; color: #e8eddf; margin-left: -10px;"></i> Prev Page
+                    </a>
+                </div>
+                <div class="layui-col-md2" style=" margin-right: 20%;">
+                    <a href="" class="layui-btn ">
+                        Next Page
+                        <i class="layui-icon layui-icon-right" style="font-size: 20px; color: #e8eddf; margin-right: -10px;"></i>
+                    </a>
                 </div>
             </div>
+
+            <br>
+            <br>
+            <br>
+            <br>
         </div>
-        {% endfor %}
-
-
-        <hr style="background-color:rgba(12, 12, 11, 0)">
-        <hr style="background-color:rgba(12, 12, 11, 0)">
-        <hr style="background-color:rgba(12, 12, 11, 0)">
-        <hr style="background-color:rgba(12, 12, 11, 0)">
-        <hr style="background-color:rgba(12, 12, 11, 0)">
-
-
-        <!-- 页面切换（上一页/下一页） -->
-<!--        <div class="layui-row">-->
-<!--            <div class="layui-col-md4 layui-col-md-offset3">-->
-<!--                <a href="" class="layui-btn ">-->
-<!--                    <i class="layui-icon layui-icon-left" style="font-size: 30px; color: #165752;"></i> Prev Page-->
-<!--                </a>-->
-<!--            </div>-->
-<!--            <div class="layui-col-md4 layui-col-md-offset1">-->
-<!--                <a href="" class="layui-btn ">-->
-<!--                    Next Page-->
-<!--                    <i class="layui-icon layui-icon-right" style="font-size: 30px; color: #165752;"></i>-->
-<!--                </a>-->
-<!--            </div>-->
-<!--        </div>-->
-
-        <hr style="background-color:rgba(12, 12, 11, 0)">
-        <hr style="background-color:rgba(12, 12, 11, 0)">
-        <hr style="background-color:rgba(12, 12, 11, 0)">
-        <hr style="background-color:rgba(12, 12, 11, 0)">
-
     </div>
 
 
