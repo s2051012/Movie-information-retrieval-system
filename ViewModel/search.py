@@ -114,10 +114,16 @@ class Searcher():
 
     def proximity_search(self, token_list: list, which_table: str, max_diff=3, weight=10.0, decay=0.5):
         """
-        :param query: query
+        :param token_list: list of token
         :param which_table: invert_name/invert_other_name/invert_actor/invert_director/invert_des
+        :param max_diff: max word distance in calculation (should smaller than 3)
+        :param weight: initial score for word distance = 1
+        :param decay: word distance decay, word distance + 1, score ** decay
         :return: a set of movie id
         """
+        if len(token_list) == 1:  # only one token case
+            temp = sorted(self.one_token_search(token_list[0], which_table).items(), key=lambda t: t[1], reverse=True)
+            return OrderedDict(temp[:30])
         token_pairs = []
         for i, token in enumerate(token_list):
             if i + 1 != len(token_list):
@@ -139,8 +145,8 @@ class Searcher():
         :param list1: list/tuple of tuples (primary key, document id, token, position)
         :param list2: list/tuple of tuples (primary key, document id, token, position)
         :param max_diff: max word distance we count
-        :param weight: initial weight for score
-        :param decay: word distance decay (should be in 0 < decay < 1)
+        :param weight: initial score for word distance = 1
+        :param decay: word distance decay, word distance + 1, score ** decay
         :return: list of candidate documents
         """
         candidate_dict = dict()
@@ -189,6 +195,25 @@ class Searcher():
         for film_id in tf:
             tf_idf[film_id] = utils.tf_idf(tf[film_id], df)
         return tf_idf
+
+    def one_token_search(self, token: str, type: str):  # give higher score for token at first position, plus TF-IDF
+        score = dict()
+        token_inverted_index = db.invert_data(type, token)
+        tf = dict()  # term frequency, (document id: tf)
+        df = 0  # document frequency
+        for (sql_primary_key, film_id, token, position) in token_inverted_index:
+            if film_id not in tf.keys():
+                df += 1
+                tf[film_id] = 1
+            else:
+                tf[film_id] += 1
+            if int(position) == 1:
+                score = utils.safe_add(score, film_id, 5.)
+
+        score2 = dict()
+        for film_id in tf:
+            score2[film_id] = utils.tf_idf(tf[film_id], df)
+        return utils.merge_two_dict(score, score2)
 
     def linear_merge(self, list1, list2, pointer1, pointer2, max_diff):
         """
