@@ -371,7 +371,7 @@ class Searcher():
         candidate_dict = dict()
         pointer1 = 0
         pointer2 = 0
-        while True:
+        while pointer1 < len(list1) and pointer2 < len(list2):
             document_id1 = list1[pointer1][1]
             document_id2 = list2[pointer2][1]
 
