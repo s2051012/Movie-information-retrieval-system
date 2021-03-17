@@ -6,25 +6,56 @@
     <meta http-equiv="content-type" content="text/html" ; charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="../static/layui/css/layui.css" type="text/css">
-    <script type="text/javascript" src="layui/layui.all.js"></script>
+    <link rel="stylesheet" href="./static/layui/css/layui.css" type="text/css">
+    <script type="text/javascript" src="./static/layui/layui.all.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="../static/css/iconfont.css">
-    <link rel="stylesheet" type="text/css" href="../static/css/left-side.css">
+    <link rel="stylesheet" type="text/css" href="./static/css/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="./static/css/left-side.css">
 
-    <script type="text/javascript" src="../static/js/jquery.min.js"></script>
-    <script type="text/javascript" src="../static/js/jquery.slimscroll.min.js"></script>
-    <script type="text/javascript" src="../static/js/left-side-menu.js"></script>
+    <script type="text/javascript" src="./static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="./static/js/jquery.slimscroll.min.js"></script>
+    <script type="text/javascript" src="./static/js/left-side-menu.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="../static/css/search.css">
-    <script type="text/javascript" src="../static/js/search.js"></script>
+    <link rel="stylesheet" type="text/css" href="./static/css/search.css">
+    <script type="text/javascript" src="./static/js/search.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="../static/css/span-line.css">
-
+    <link rel="stylesheet" type="text/css" href="./static/css/span-line.css">
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $(".pholder").eq(2).hide();
+        $(".pholder").eq(3).hide();
+        $(".pholder").eq(4).hide();
+    });
+    </script>
+    <script type="text/javascript">
+        function func1(){
+            var index = $('#search-bd li.selected').index();
+            if (index === 0){
+                document.search_form.action='/searchfilmsDefault';
+                document.search_form.submit();
+            }
+            if (index === 1){
+                document.search_form.action='/searchfilmsName';
+                document.search_form.submit();
+            }
+            if (index === 2){
+                document.search_form.action='/searchfilmsDirector';
+                document.search_form.submit();
+            }
+            if (index === 3){
+                document.search_form.action='/searchfilmsActor';
+                document.search_form.submit();
+            }
+            if (index === 4){
+                document.search_form.action='/searchfilmsKeywords';
+                document.search_form.submit();
+            }
+        }
+    </script>
 
 </head>
 
-<body background="../static/background.png">
+<body background="./static/background.png">
     <div class="container">
         <div class="left-side-menu" style="float:left; position: fixed;">
             <div class="lsm-expand-btn">
@@ -46,42 +77,42 @@
             <div class="lsm-container">
                 <div class="lsm-scroll">
                     <div class="lsm-sidebar">
-                        <ul>
+                          <ul>
                             <li class="lsm-sidebar-item">
-                                <a href="genres details.html"><i class="iconfont lsm-sidebar-icon icon_1"></i><span>Action</span><i class="my-icon lsm-sidebar-more"></i></a>
+                                <a href="{{url_for('show_genre_country_films',genre = 'Action')}}"><i class="iconfont lsm-sidebar-icon icon_1"></i><span>Action</span><i class="my-icon lsm-sidebar-more"></i></a>
                             </li>
                             <li class="lsm-sidebar-item">
-                                <a href="genres details.html"><i class="iconfont lsm-sidebar-icon icon_2"></i><span>Thriller</span><i class="my-icon lsm-sidebar-more"></i></a>
+                                <a href="{{url_for('show_genre_country_films',genre = 'Thriller')}}"><i class="iconfont lsm-sidebar-icon icon_2"></i><span>Thriller</span><i class="my-icon lsm-sidebar-more"></i></a>
                             </li>
                             <li class="lsm-sidebar-item">
-                                <a href="genres details.html"><i class="iconfont lsm-sidebar-icon icon_3"></i><span>Drama</span><i class="my-icon lsm-sidebar-more"></i></a>
+                                <a href="{{url_for('show_genre_country_films',genre = 'Drama')}}"><i class="iconfont lsm-sidebar-icon icon_3"></i><span>Drama</span><i class="my-icon lsm-sidebar-more"></i></a>
                             </li>
                             <li class="lsm-sidebar-item">
-                                <a href="genres details.html"><i class="iconfont lsm-sidebar-icon icon_4"></i><span>Mystery</span><i class="my-icon lsm-sidebar-more"></i></a>
+                                <a href="{{url_for('show_genre_country_films',genre = 'Mystery')}}"><i class="iconfont lsm-sidebar-icon icon_4"></i><span>Mystery</span><i class="my-icon lsm-sidebar-more"></i></a>
                             </li>
                             <li class="lsm-sidebar-item">
-                                <a href="genres details.html"><i class="iconfont lsm-sidebar-icon icon_5"></i><span>Crime</span><i class="my-icon lsm-sidebar-more"></i></a>
+                                <a href="{{url_for('show_genre_country_films',genre = 'Crime')}}"><i class="iconfont lsm-sidebar-icon icon_5"></i><span>Crime</span><i class="my-icon lsm-sidebar-more"></i></a>
                             </li>
                             <li class="lsm-sidebar-item">
-                                <a href="genres details.html"><i class="iconfont lsm-sidebar-icon icon_6"></i><span>Animation</span><i class="my-icon lsm-sidebar-more"></i></a>
+                                <a href="{{url_for('show_genre_country_films',genre = 'Animation')}}"><i class="iconfont lsm-sidebar-icon icon_6"></i><span>Animation</span><i class="my-icon lsm-sidebar-more"></i></a>
                             </li>
                             <li class="lsm-sidebar-item">
-                                <a href="genres details.html"><i class="iconfont lsm-sidebar-icon icon_7"></i><span>Adventure</span><i class="my-icon lsm-sidebar-more"></i></a>
+                                <a href="{{url_for('show_genre_country_films',genre = 'Adventure')}}"><i class="iconfont lsm-sidebar-icon icon_7"></i><span>Adventure</span><i class="my-icon lsm-sidebar-more"></i></a>
                             </li>
                             <li class="lsm-sidebar-item">
-                                <a href="genres details.html"><i class="iconfont lsm-sidebar-icon icon_8"></i><span>Fantasy</span><i class="my-icon lsm-sidebar-more"></i></a>
+                                <a href="{{url_for('show_genre_country_films',genre = 'Fantasy')}}"><i class="iconfont lsm-sidebar-icon icon_8"></i><span>Fantasy</span><i class="my-icon lsm-sidebar-more"></i></a>
                             </li>
                             <li class="lsm-sidebar-item">
-                                <a href="genres details.html"><i class="iconfont lsm-sidebar-icon icon_9"></i><span>Comedy</span><i class="my-icon lsm-sidebar-more"></i></a>
+                                <a href="{{url_for('show_genre_country_films',genre = 'Comedy')}}"><i class="iconfont lsm-sidebar-icon icon_9"></i><span>Comedy</span><i class="my-icon lsm-sidebar-more"></i></a>
                             </li>
                             <li class="lsm-sidebar-item">
-                                <a href="genres details.html"><i class="iconfont lsm-sidebar-icon icon_10"></i><span>Sci-fi</span><i class="my-icon lsm-sidebar-more"></i></a>
+                                <a href="{{url_for('show_genre_country_films',genre = 'Sci-fi')}}"><i class="iconfont lsm-sidebar-icon icon_10"></i><span>Sci-fi</span><i class="my-icon lsm-sidebar-more"></i></a>
                             </li>
                             <li class="lsm-sidebar-item">
-                                <a href="genres details.html"><i class="iconfont lsm-sidebar-icon icon_11"></i><span>Horror</span><i class="my-icon lsm-sidebar-more"></i></a>
+                                <a href="{{url_for('show_genre_country_films',genre = 'Horror')}}"><i class="iconfont lsm-sidebar-icon icon_11"></i><span>Horror</span><i class="my-icon lsm-sidebar-more"></i></a>
                             </li>
                             <li class="lsm-sidebar-item">
-                                <a href="genres details.html"><i class="iconfont lsm-sidebar-icon icon_12"></i><span>Romance</span><i class="my-icon lsm-sidebar-more"></i></a>
+                                <a href="{{url_for('show_genre_country_films',genre = 'Romance')}}"><i class="iconfont lsm-sidebar-icon icon_12"></i><span>Romance</span><i class="my-icon lsm-sidebar-more"></i></a>
                             </li>
                         </ul>
                     </div>
@@ -100,22 +131,25 @@
                                 <li>Name</li>
                                 <li>Director</li>
                                 <li>Actor</li>
-                                <li>Keywords</li>
+                                <li>Descriptons</li>
                             </ul>
                         </div>
                         <div id="search-hd" class="search-hd">
                             <div class="search-bg"></div>
-                            <input type="text" id="s1" class="search-input">
-                            <input type="text" id="s2" class="search-input">
-                            <input type="text" id="s3" class="search-input">
-                            <input type="text" id="s4" class="search-input">
-                            <input type="text" id="s5" class="search-input">
+                            <form name="search_form" action="" method="POST">
+                            <input type="text" id="s1" name="s1" class="search-input">
+                            <input type="text" id="s2" name="s2" class="search-input">
+                            <input type="text" id="s3" name="s3" class="search-input">
+                            <input type="text" id="s4" name="s4" class="search-input">
+                            <input type="text" id="s5" name="s5" class="search-input">
                             <span class="s1 pholder">Search movies</span>
                             <span class="s2 pholder">Search by name</span>
                             <span class="s3 pholder">Search by director</span>
                             <span class="s4 pholder">Search by actor</span>
-                            <span class="s5 pholder">Search by keywords</span>
-                            <a href="search results.html"><button id="submit" class="btn-search" value="search"><i class="layui-icon" style="font-size: 23px">&#xe609;</i></button></a>
+                            <span class="s5 pholder">Search by descriptons</span>
+                            <button type="submit" class="btn-search" onclick="func1()"><i class="layui-icon" style="font-size: 23px">&#xe609;</i>
+                            </button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -129,17 +163,17 @@
                 <!-- name + general info -->
                 <div class="layui-col-md6">
                     <p style="line-height:2.4;color:#f5cb5c; font-size:30px">
-                        The Godfather
+                        {{detail_film.name}}
                         <!-- name，对应数据库字段：Film.name -->
                     </p>
                     <p style="line-height:2.4; color:#b2b8be; font-size:15px">
-                        2h 55min |
+                        {{detail_film.time}} |
                         <!-- time，对应数据库字段：Film.time -->
-                        Crime, Drama |
+                        {{film_genres}} |
                         <!-- genres，对应数据库字段：Film.genres -->
-                        USA  |
+                        {{film_country}}  |
                         <!-- country，对应数据库字段：Film.country -->
-                        1972
+                        {{detail_film.date}}
                         <!-- date，对应数据库字段：Film.date(前四个字符，年份/全写也成) -->
                     </p>
                 </div>
@@ -154,7 +188,7 @@
                                     <i class="layui-icon layui-icon-rate-half" style="font-size: 28px; color: #f5cb5c;"></i>
                                 </div>
                                 <div class="layui-col-md6" style="font-size: 26px; color: #b2b8be;margin-top: -5px;">
-                                    9.2
+                                    {{detail_film.rating_value}}
                                     <!-- score，对应数据库字段：Film.rating_value -->
                                 </div>
                             </div>
@@ -167,9 +201,9 @@
                                 </div>
                                 <div class="layui-col-md6" style="font-size: 18px;">
                                     <div class="span-line">
-                                        <a href="">
+                                        <a href="{{detail_film.more_reviews_url}}">
                                             <!-- 跳转到评论页面，对应数据库字段：Film.more_reviews_url -->
-                                            1,615,117
+                                            {{detail_film.rating_count}}
                                             <!-- rating_count，对应数据库字段：Film.rating_count -->
                                         </a>
                                     </div>
@@ -184,7 +218,11 @@
                                     <i class="layui-icon layui-icon-chart-screen" style="font-size: 30px; color: #f5cb5c;"></i>
                                 </div>
                                 <div class="layui-col-md6" style="font-size: 18px; color: #b2b8be;">
-                                    $246,120,986
+                                {% if detail_film.gross %}
+                                    {{detail_film.gross}}
+                                {% else %}
+                                    No Records
+                                {% endif %}
                                     <!-- gross，对应数据库字段：Film.gross -->
                                 </div>
                             </div>
@@ -205,7 +243,7 @@
 
                 <!-- image  -->
                 <div class="layui-col-md3">
-                    <img src="../static/godfather.jpg" width="230" height="330">
+                    <img src="{{detail_film.image}}" width="230" height="330">
                     <!-- image，对应对数据字段：Film.image -->
                 </div>
 
@@ -213,32 +251,42 @@
                 <div class="layui-col-md7" style="background-color: rgba(169, 169, 169, 0.13);">
                     <p style="line-height:3; color:#e8eddf; font-size:15px">
                         <span style="color: #f5cb5c;">&nbsp;&nbsp;OtherName : &nbsp;
-                    </span> Mario Puzo's The Godfather
+                    </span>
+                        {% if detail_film.other_name %}
+                            {{detail_film.other_name}}
+                        {% else %}
+                            No Records
+                        {% endif %}
                         <!-- otherName，对应数据库字段：Film.otherName  -->
                     </p>
                     <p style="line-height:3; color:#e8eddf; font-size:15px">
                         <span style="color: #f5cb5c;">&nbsp;&nbsp;Actor:  &nbsp;
-                    </span> Marlon Brando / Al Pacino / James Caan / Diane Keaton
+                    </span> {{film_actors}}
                         <!-- Actor，对应数据库字段：Actors.actorName  -->
                     </p>
                     <p style="line-height:3; color:#e8eddf; font-size:15px">
                         <span style="color: #f5cb5c;">&nbsp;&nbsp;Director : &nbsp;
-                    </span> Francis Ford Coppola
+                    </span>
+                        {% if film_director.director_name %}
+                            {{film_director.director_name}}
+                        {% else %}
+                            No Records
+                        {% endif %}
                         <!-- director，对应数据库字段：Directors.directorName  -->
                     </p>
                     <p style="line-height:3; color:#e8eddf; font-size:15px">
                         <span style="color: #f5cb5c;">&nbsp;&nbsp;Language : &nbsp;
-                    </span> English / Italian / Latin
+                    </span> {{film_languages}}
                         <!-- Language，对应数据库字段：Film.languages  -->
                     </p>
                     <p style="line-height:3; color:#e8eddf; font-size:15px">
                         <span style="color: #f5cb5c;">&nbsp;&nbsp;Production : &nbsp;
-                    </span> Paramount Pictures / Alfran Productions
+                    </span> {{film_productions}}
                         <!-- production，对应数据库字段：Productions.productionName  -->
                     </p>
                     <p style="line-height:3; color:#e8eddf; font-size:15px">
                         <span style="color: #f5cb5c;">&nbsp;&nbsp;Key words : &nbsp;
-                    </span> crime family / mafia / patriarch / organized crime / rise to power
+                    </span> {{film_keywords}}
                         <!-- keywords，对应数据库字段：Film.keywords  -->
                     </p>
 
@@ -251,7 +299,11 @@
 
             <div class="layui-raw">
                 <div class="layui-col-md10" style="line-height:2.4; color: #b2b8be; font-size:15px;text-align:justify">
-                    The Godfather is a movie starring Marlon Brando, Al Pacino, and James Caan. An organized crime dynasty's aging patriarch transfers control of his clandestine empire to his reluctant son.
+                {% if detail_film.description %}
+                    {{detail_film.description}}
+                {% else %}
+                    No Records
+                {% endif %}
                     <!-- description，对应数据库字段：Film.description  -->
                 </div>
             </div>
@@ -262,7 +314,7 @@
             <!-- photos  -->
             <div class="layui-raw" style="margin-right: 13px;">
                 <div class="layui-col-md4 layui-col-md-offset8">
-                    <a href="" class="layui-btn " style="color: #e8eddf;">
+                    <a href="{{film_photos[0]}}" class="layui-btn " style="color: #e8eddf;">
                         <!-- photos，对应数据库字段 url：Film.photos -->
                         <span style="margin-left: -2%;margin-right: 3%; font-size: 15px;">More movie photos</span>
                         <i class="layui-icon layui-icon-picture" style="font-size: 20px; color: #e8eddf;margin-right: -5px;"></i>
@@ -279,10 +331,7 @@
                     Storyline
                 </p>
                 <p class="layui-col-md10" style="line-height:2.2; color: #b2b8be; font-size:15px;text-align:justify">
-                    The Godfather "Don" Vito Corleone is the head of the Corleone mafia family in New York. He is at the event of his daughter's wedding. Michael, Vito's youngest son and a decorated WW II Marine is also present at the wedding. Michael seems to be uninterested
-                    in being a part of the family business. Vito is a powerful man, and is kind to all those who give him respect but is ruthless against those who do not. But when a powerful and treacherous rival wants to sell drugs and needs the Don's
-                    influence for the same, Vito refuses to do it. What follows is a clash between Vito's fading old values and the new ways which may cause Michael to do the thing he was most reluctant in doing and wage a mob war against all the other
-                    mafia families which could tear the Corleone family apart.
+                    {{detail_film.storyline}}
                     <!-- sotryline，对应数据库字段：Film.stroyline -->
                 </p>
             </div>
@@ -294,7 +343,7 @@
             <!-- more movie details  -->
             <div class="layui-raw">
                 <div class="layui-col-md4 layui-col-md-offset8">
-                    <a href="" class="layui-btn " style="color: #e8eddf; margin-top: 20px;">
+                    <a href="{{detail_film.imdb_url}}" class="layui-btn " style="color: #e8eddf; margin-top: 20px;">
                         <!-- more_movie_details，对应数据库字段 url：Film.imdb_url -->
                         <span style="margin-left: -2%;margin-right: 3%; font-size: 15px;">More movie details</span>
                         <i class="layui-icon layui-icon-about" style="font-size: 20px; color: #e8eddf;margin-right: -5px;"></i>
