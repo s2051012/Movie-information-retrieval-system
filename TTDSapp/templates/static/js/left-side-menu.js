@@ -11,7 +11,11 @@ $(function() {
     });
     $('.lsm-container ul ul').css("display", "none");
     // lsm-sidebar收缩展开
+    $('.lsm-container li>a').on('click',function(){
+         $(this).addClass('active')
+    });
     $('.lsm-sidebar a').on('click', function() {
+        $(this).addClass('selected')
         $('.lsm-scroll').slimscroll({
             height: 'auto',
             position: 'right',
