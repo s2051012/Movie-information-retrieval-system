@@ -3,6 +3,9 @@
 # from exts import db
 # from model import Student,Film,Genre,Country,Actor,Director,Language,Production,Country,Genre
 import pymysql
+from config import Config
+
+
 # def film_information(film_id):
 #     """
 #     Getting film information 根据电影id获得电影数据
@@ -162,7 +165,6 @@ def film_information(film_id):
 
     # db.close()  # 数据库关闭--写在最后的最后
     return results
-
 
 
 def invert_data(table_name, token):
