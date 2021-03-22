@@ -138,9 +138,18 @@ class Searcher():
             else:
                 can_dict = self.search_candidate_document(list1, list2, max_diff, weight, decay)
                 candidate_dict = utils.merge_two_dict(candidate_dict, can_dict)
+
+        # robust to wrong vocab
+        for i, token in enumerate(token_list):
+            if i + 2 >= len(token_list):
+                break
+            list1 = db.invert_data(which_table, token)
+            list2 = db.invert_data(which_table, token_list[i + 2])
+            can_dict = self.search_candidate_document(list1, list2, max_diff, weight, decay, skip=False)
+            candidate_dict = utils.merge_two_dict(candidate_dict, can_dict)
         return candidate_dict
 
-    def search_candidate_document(self, list1, list2, max_diff=3, weight=10.0, decay=0.5):
+    def search_candidate_document(self, list1, list2, max_diff=3, weight=10.0, decay=0.5, skip=False):
         """
         :param list1: list/tuple of tuples (primary key, document id, token, position)
         :param list2: list/tuple of tuples (primary key, document id, token, position)
@@ -158,7 +167,10 @@ class Searcher():
 
             if document_id1 == document_id2:
                 diff = abs(int(list1[pointer1][3]) - int(list2[pointer2][3]))
-                if diff == 1 and max_diff >= 1:
+                if skip:
+                    if diff == 2:
+                        candidate_dict = utils.safe_add(candidate_dict, document_id1, weight * decay)
+                elif diff == 1 and max_diff >= 1:
                     candidate_dict = utils.safe_add(candidate_dict, document_id1, weight)
                 elif diff == 2 and max_diff >= 2:
                     candidate_dict = utils.safe_add(candidate_dict, document_id1, weight ** decay)
