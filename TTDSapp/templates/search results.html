@@ -169,7 +169,7 @@
                 <!-- image  -->
                 <div class="layui-col-md3">
                     <a href="/moviedetail{{film[0]}}">
-                        <img src="{{film[9]}}" width=80% height=80% style="margin: 10%;">
+                        <img src="{{film[9]}}" width=80% height=80% style="margin: 10%;" title="{{film[2]}}>
                     </a>
                     <!-- image，对应对数据字段：Film.image -->
                 </div>
@@ -180,7 +180,8 @@
                     <div class="layui-raw" style="margin-top: 10px;">
                         <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
                             <span style="color: #f5cb5c;">Name : &nbsp;
-                            </span> {{film[2]}}
+                            </span> 
+                            <span class="span-line"><a href="/moviedetail{{film[0]}}">{{film[2]}}</a></span>
                             <!-- Name，对应数据库字段：Film.Name  -->
                         </p>
                         <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
