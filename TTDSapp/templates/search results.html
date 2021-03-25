@@ -16,6 +16,7 @@
     <script type="text/javascript" src="./static/js/jquery.slimscroll.min.js"></script>
     <script type="text/javascript" src="./static/js/left-side-menu.js"></script>
 
+    <link rel="stylesheet" type="text/css" href="./static/css/span-line.css">
     <link rel="stylesheet" type="text/css" href="./static/css/search.css">
     <script type="text/javascript" src="./static/js/search.js"></script>
     <script type="text/javascript">
@@ -184,56 +185,59 @@
                             <span class="span-line"><a href="/moviedetail{{film[0]}}">{{film[2]}}</a></span>
                             <!-- Name，对应数据库字段：Film.Name  -->
                         </p>
-                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                        <p style="line-height:2.2; font-size:15px; color: #b2b8be;">
                             <span style="color: #f5cb5c;">Score:  &nbsp;
                             </span> {{film[15]}}
                             <!-- score，对应数据库字段：Film.rating_value -->
                         </p>
-                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                        <p style="line-height:2.2; font-size:15px; color: #b2b8be;">
                             <span style="color: #f5cb5c;">Genres: &nbsp;
                             </span> {{film[-3]}}
                             <!-- genres，对应数据库字段：Film.genres -->
                         </p>
-                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                        <p style="line-height:2.2; font-size:15px; color: #b2b8be;">
                             <span style="color: #f5cb5c;">Country:  &nbsp;
                             </span> {{film[-4]}}
                             <!-- country，对应数据库字段：Film.country -->
                         </p>
-                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                        <p style="line-height:2.2; font-size:15px; color: #b2b8be;">
                             <span style="color: #f5cb5c;">Actor:  &nbsp;
                             </span> {{film[-6]}}
                             <!-- Actor，对应数据库字段：Actors.actorName  -->
                         </p>
-                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                        <p style="line-height:2.2; font-size:15px; color: #b2b8be;">
                             <span style="color: #f5cb5c;">Director : &nbsp;
                             </span> {{film[-5]}}
                             <!-- director，对应数据库字段：Directors.directorName  -->
                         </p>
-                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                        <p style="line-height:2.2; font-size:15px; color: #b2b8be;">
                             <span style="color: #f5cb5c;">Key words : &nbsp;
                             </span> {{film[5]}}
                             <!-- keywords，对应数据库字段：Film.keywords  -->
                         </p>
-                        <p style="line-height:2.2; font-size:15px; text-align: justify; margin-right: 20px; color: #e8eddf;">
+                        <p style="line-height:2.2; font-size:15px; text-align: justify; margin-right: 20px; color: #b2b8be;">
                             <span style="color: #f5cb5c;">Description:  &nbsp;
                             </span>{{film[4]}}
                             <!-- description，对应数据库字段：Film.description  -->
                         </p>
                     </div>
 
-                    <div class="layui-raw">
-                        <div class="layui-col-md4 layui-col-md-offset8">
-                            <a href="{{film[13]}}" class="layui-btn " style="margin: 5%; float: right;">
-                                <!-- more_movie_details，对应数据库字段 url：Film.imdb_url -->
-                                <p>More movie details
-                                    <i class="layui-icon layui-icon-about" style="font-size: 20px; color: #e8eddf;margin-right: -5px;"></i>
-                                </p>
-                            </a>
-                        </div>
-                    </div>
+                    <!--<div class="layui-raw">-->
+                    <!--    <div class="layui-col-md4 layui-col-md-offset8">-->
+                    <!--        <a href="{{film[13]}}" class="layui-btn " style="margin: 5%; float: right;">-->
+                    <!--             more_movie_details，对应数据库字段 url：Film.imdb_url -->
+                    <!--            <p>More movie details-->
+                    <!--                <i class="layui-icon layui-icon-about" style="font-size: 20px; color: #e8eddf;margin-right: -5px;"></i>-->
+                    <!--            </p>-->
+                    <!--        </a>-->
+                    <!--    </div>-->
+                    <!--    <br>-->
+                    <!--</div>-->
+                                                                                                                                      
                 </div>
-
             </div>
+            <br>
+            <br>
             {% endfor %}
 
             <hr style="background-color:rgba(12, 12, 11, 0)">
