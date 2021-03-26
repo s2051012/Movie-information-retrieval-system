@@ -112,7 +112,7 @@ class Searcher():
     # The following functions are not suggested to be called. They are not interface functions!!!
     # ---------------------------------------------------------------------------------------------------
 
-    def proximity_search(self, token_list: list, which_table: str, max_diff=3, weight=10.0, decay=0.5):
+    def proximity_search(self, token_list: list, which_table: str, max_diff=3, weight=6.0, decay=1.0):
         """
         :param token_list: list of token
         :param which_table: invert_name/invert_other_name/invert_actor/invert_director/invert_des
@@ -149,7 +149,7 @@ class Searcher():
             candidate_dict = utils.merge_two_dict(candidate_dict, can_dict)
         return candidate_dict
 
-    def search_candidate_document(self, list1, list2, max_diff=3, weight=10.0, decay=0.5, skip=False):
+    def search_candidate_document(self, list1, list2, max_diff=3, weight=6.0, decay=1.0, skip=False):
         """
         :param list1: list/tuple of tuples (primary key, document id, token, position)
         :param list2: list/tuple of tuples (primary key, document id, token, position)
