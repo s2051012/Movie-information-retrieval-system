@@ -1,4 +1,6 @@
 import os
+from autocorrect import Speller
+from nltk.corpus import wordnet as wn
 from ViewModel import utils
 from Model import db_search_interface as db
 from collections import OrderedDict
@@ -24,6 +26,7 @@ class Searcher():
         for line in file:
             self.stop_words.add(line.strip())
         file.close()
+        self.spell_checker = Speller(lang='en', fast=True)
 
     def boolean_search_by_genre(self, genres: list, unfiltered_films: list):
         """
@@ -66,6 +69,7 @@ class Searcher():
         :return: an OrderedDict contains (film_id: its score)
         """
         token_list = utils.preprocessing(query)
+        token_list = [self.spell_checker(token) for token in token_list]  # spell correction
         film_score_name = self.proximity_search(token_list, 'invert_name', max_diff=3)
         film_score_other_name = self.proximity_search(token_list, 'invert_other_name', max_diff=3)
 
@@ -103,8 +107,12 @@ class Searcher():
         token_list = utils.preprocessing(query, stop=self.stop_words)
         tf_idf = dict()
         for token in token_list:
-            temp = sorted(self.calculate_description_tfidf(token).items(), key=lambda t: t[1], reverse=True)
-            tf_idf = utils.merge_two_dict(tf_idf, dict(temp[:30]))  # beam search top-30
+            temp = self.calculate_description_tfidf(token)
+            synonym = self.get_synonym(token)  # query expansion
+            if synonym is not None:
+                temp = utils.merge_two_dict(temp, self.calculate_description_tfidf(synonym))
+            temp = sorted(temp.items(), key=lambda t: t[1], reverse=True)
+            tf_idf = utils.merge_two_dict(tf_idf, dict(temp[:100]))  # beam search top-100
 
         return OrderedDict(sorted(tf_idf.items(), key=lambda t: t[1], reverse=True))
 
@@ -244,3 +252,12 @@ class Searcher():
             return self.linear_merge(list1, list2, pointer1, pointer2 + 1, max_diff)
         else:
             return self.linear_merge(list1, list2, pointer1 + 1, pointer2, max_diff)  # tail recursion
+
+    def get_synonym(self, token):
+        # s = Searcher()
+        # print(s.get_synonym('girl'))
+        syn_set = wn.synsets(token)[0]
+        for lemma in syn_set.lemma_names():
+            if lemma != token:
+                return lemma
+        return token
