@@ -198,27 +198,67 @@
                         </p>
                         <p style="line-height:2.2; font-size:15px; color: #b2b8be;">
                             <span style="color: #f5cb5c;">Country:  &nbsp;
-                            </span> {{film[-4]}}
+                            </span>
+                            <span style="font-weight: 500;">
+                                {% if film[-4] %}
+                                    {{film[-4]}}
+                                {% else %}
+                                    No Records
+                                {% endif %}
+                                <!--{{film[-4]}}-->
+                            </span>
                             <!-- country，对应数据库字段：Film.country -->
                         </p>
                         <p style="line-height:2.2; font-size:15px; color: #b2b8be;">
                             <span style="color: #f5cb5c;">Actor:  &nbsp;
-                            </span> {{film[-6]}}
+                            </span>
+                            <span style="font-weight: 500;">
+                                {% if film[-6] %}
+                                    {{film[-6]}}
+                                {% else %}
+                                    No Records
+                                {% endif %}
+                                <!--{{film[-6]}}-->
+                            </span>
                             <!-- Actor，对应数据库字段：Actors.actorName  -->
                         </p>
                         <p style="line-height:2.2; font-size:15px; color: #b2b8be;">
                             <span style="color: #f5cb5c;">Director : &nbsp;
-                            </span> {{film[-5]}}
+                            </span>
+                            <span style="font-weight: 500;">
+                                {% if film[-5] %}
+                                    {{film[-5]}}
+                                {% else %}
+                                    No Records
+                                {% endif %}
+                                <!--{{film[-5]}}-->
+                            </span>
                             <!-- director，对应数据库字段：Directors.directorName  -->
                         </p>
                         <p style="line-height:2.2; font-size:15px; color: #b2b8be;">
                             <span style="color: #f5cb5c;">Key words : &nbsp;
-                            </span> {{film[5]}}
+                            </span>
+                            <span style="font-weight: 500;">
+                                {% if film[5] %}
+                                    {{film[5]}}
+                                {% else %}
+                                    No Records
+                                {% endif %}
+                                <!--{{film[5]}}-->
+                            </span>
                             <!-- keywords，对应数据库字段：Film.keywords  -->
                         </p>
                         <p style="line-height:2.2; font-size:15px; text-align: justify; margin-right: 20px; color: #b2b8be;">
                             <span style="color: #f5cb5c;">Description:  &nbsp;
-                            </span>{{film[4]}}
+                            </span>
+                            <span style="font-weight: 500;">
+                                {% if film[4] %}
+                                    {{film[4]}}
+                                {% else %}
+                                    No Records
+                                {% endif %}
+                                <!--{{film[4]}}-->
+                            </span>
                             <!-- description，对应数据库字段：Film.description  -->
                         </p>
                     </div>
