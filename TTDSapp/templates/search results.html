@@ -17,6 +17,7 @@
     <script type="text/javascript" src="./static/js/left-side-menu.js"></script>
 
     <link rel="stylesheet" type="text/css" href="./static/css/span-line.css">
+    <link rel="stylesheet" type="text/css" href="./static/css/box.css">
     <link rel="stylesheet" type="text/css" href="./static/css/search.css">
     <script type="text/javascript" src="./static/js/search.js"></script>
     <script type="text/javascript">
@@ -170,7 +171,7 @@
                 <!-- image  -->
                 <div class="layui-col-md3">
                     <a href="/moviedetail{{film[0]}}">
-                        <img src="{{film[9]}}" width=80% height=80% style="margin: 10%;" title="{{film[2]}}>
+                        <img class="box" src="{{film[9]}}" onerror='this.src="./static/no picture.jpg"' width=200 height=284 style="margin: 10%;" title="{{film[2]}}">
                     </a>
                     <!-- image，对应对数据字段：Film.image -->
                 </div>
