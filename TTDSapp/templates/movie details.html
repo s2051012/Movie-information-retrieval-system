@@ -168,13 +168,25 @@
                         <!-- name，对应数据库字段：Film.name -->
                     </p>
                     <p style="line-height:2.4; color:#b2b8be; font-size:15px">
-                        {{detail_film.time}} |
+                        {% if detail_film.time %}
+                            {{detail_film.time}} |
+                        {% endif %}
+                        <!--{{detail_film.time}} |-->
                         <!-- time，对应数据库字段：Film.time -->
-                        {{film_genres}} |
+                        {% if film_genres %}
+                            {{film_genres}} |
+                        {% endif %}
+                        <!--{{film_genres}} |-->
                         <!-- genres，对应数据库字段：Film.genres -->
-                        {{film_country}}  |
+                        {% if film_country %}
+                            {{film_country}} |
+                        {% endif %}
+                        <!--{{film_country}}  |-->
                         <!-- country，对应数据库字段：Film.country -->
-                        {{detail_film.date}}
+                        {% if detail_film.date %}
+                            {{detail_film.date}}
+                        {% endif %}
+                        <!--{{detail_film.date}}-->
                         <!-- date，对应数据库字段：Film.date(前四个字符，年份/全写也成) -->
                     </p>
                 </div>
