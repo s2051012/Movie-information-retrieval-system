@@ -16,6 +16,7 @@
     <script type="text/javascript" src="./static/js/jquery.slimscroll.min.js"></script>
     <script type="text/javascript" src="./static/js/left-side-menu.js"></script>
 
+    <link rel="stylesheet" type="text/css" href="./static/css/box.css">
     <link rel="stylesheet" type="text/css" href="./static/css/search.css">
     <script type="text/javascript" src="./static/js/search.js"></script>
 
@@ -243,7 +244,7 @@
 
                 <!-- image  -->
                 <div class="layui-col-md3">
-                    <img src="{{detail_film.image}}" width="230" height="330">
+                    <img class="box" src="{{detail_film.image}}" onerror='this.src="./static/no picture.jpg"' width="220" height="300">
                     <!-- image，对应对数据字段：Film.image -->
                 </div>
 
@@ -286,7 +287,12 @@
                     </p>
                     <p style="line-height:3; color:#e8eddf; font-size:15px">
                         <span style="color: #f5cb5c;">&nbsp;&nbsp;Key words : &nbsp;
-                    </span> {{film_keywords}}
+                    </span> 
+                        {% if film_keywords %}
+                            {{film_keywords}}
+                        {% else %}
+                            No Records
+                        {% endif %}
                         <!-- keywords，对应数据库字段：Film.keywords  -->
                     </p>
 
@@ -331,7 +337,11 @@
                     Storyline
                 </p>
                 <p class="layui-col-md10" style="line-height:2.2; color: #b2b8be; font-size:15px;text-align:justify">
-                    {{detail_film.storyline}}
+                    {% if detail_film.storyline %}
+                        {{detail_film.storyline}}
+                    {% else %}
+                        No Records
+                    {% endif %}
                     <!-- sotryline，对应数据库字段：Film.stroyline -->
                 </p>
             </div>
