@@ -1,4 +1,5 @@
 import os
+from autocorrect import Speller
 from ViewModel import utils
 from Model import db_search_interface as db
 from collections import OrderedDict
@@ -24,6 +25,7 @@ class Searcher():
         for line in file:
             self.stop_words.add(line.strip())
         file.close()
+        self.spell_checker = Speller(lang='en')
 
     def boolean_search_by_genre(self, genres: list, unfiltered_films: list):
         """
@@ -66,6 +68,7 @@ class Searcher():
         :return: an OrderedDict contains (film_id: its score)
         """
         token_list = utils.preprocessing(query)
+        token_list = [self.spell_checker(token) for token in token_list]  # spell correction
         film_score_name = self.proximity_search(token_list, 'invert_name', max_diff=3)
         film_score_other_name = self.proximity_search(token_list, 'invert_other_name', max_diff=3)
 
