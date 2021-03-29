@@ -2,7 +2,7 @@ import os
 from autocorrect import Speller
 from nltk.corpus import wordnet as wn
 from ViewModel import utils
-from Model import db_search_interface as db
+from Model.db_search_interface import db_search
 from collections import OrderedDict
 
 
@@ -27,6 +27,10 @@ class Searcher():
             self.stop_words.add(line.strip())
         file.close()
         self.spell_checker = Speller(lang='en', fast=True)
+        self.database = db_search()
+
+    def __del__(self):
+        self.database.db_close()
 
     def boolean_search_by_genre(self, genres: list, unfiltered_films: list):
         """
@@ -51,7 +55,7 @@ class Searcher():
         :param id: film id
         :return: a dictionary represents information of this film
         """
-        return utils.film_convert_list_to_dict(db.film_information(id))
+        return utils.film_convert_list_to_dict(self.database.film_information(id))
 
     def default_search(self, query: str):
         """
@@ -139,8 +143,8 @@ class Searcher():
 
         candidate_dict = dict()
         for i, (t1, t2) in enumerate(token_pairs):
-            list1 = db.invert_data(which_table, t1)
-            list2 = db.invert_data(which_table, t2)
+            list1 = self.database.invert_data(which_table, t1)
+            list2 = self.database.invert_data(which_table, t2)
             if i == 0:
                 candidate_dict = self.search_candidate_document(list1, list2, max_diff, weight, decay)
             else:
@@ -151,8 +155,8 @@ class Searcher():
         for i, token in enumerate(token_list):
             if i + 2 >= len(token_list):
                 break
-            list1 = db.invert_data(which_table, token)
-            list2 = db.invert_data(which_table, token_list[i + 2])
+            list1 = self.database.invert_data(which_table, token)
+            list2 = self.database.invert_data(which_table, token_list[i + 2])
             can_dict = self.search_candidate_document(list1, list2, max_diff, weight, decay, skip=False)
             candidate_dict = utils.merge_two_dict(candidate_dict, can_dict)
         return candidate_dict
@@ -201,7 +205,7 @@ class Searcher():
         return candidate_dict
 
     def calculate_description_tfidf(self, token: str):
-        token_inverted_index = db.invert_data('invert_des', token)
+        token_inverted_index = self.database.invert_data('invert_des', token)
         tf = dict()  # term frequency, (document id: tf)
         df = 0  # document frequency
         for (sql_primary_key, film_id, token, position) in token_inverted_index:
@@ -218,7 +222,7 @@ class Searcher():
 
     def one_token_search(self, token: str, type: str):  # give higher score for token at first position, plus TF-IDF
         score = dict()
-        token_inverted_index = db.invert_data(type, token)
+        token_inverted_index = self.database.invert_data(type, token)
         tf = dict()  # term frequency, (document id: tf)
         df = 0  # document frequency
         for (sql_primary_key, film_id, token, position) in token_inverted_index:

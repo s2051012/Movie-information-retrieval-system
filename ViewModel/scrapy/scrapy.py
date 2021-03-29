@@ -197,7 +197,7 @@ def main_loop(genre, start_pages=0):  # fetch 1000 movies every time
     for page_num in range(start_pages, start_pages + 20):
         mid_list = catch_50_movies(genre, page_num)
         for mid in mid_list:
-            time.sleep(10)
+            time.sleep(1)
             http_response = http_get_by_movie_id(mid)
             try:
                 encoded, uid = encode_to_json(mid, http_response)
@@ -236,7 +236,7 @@ def main_loop_after_10000(genre, max_iter=20):  # after 10000 movies. Please kee
         for iter in range(max_iter):
             mid_list, next_page_hash = catch_50_movies_by_hash(genre, page_hash)
             for mid in mid_list:
-                time.sleep(10)
+                time.sleep(1)
                 http_response = http_get_by_movie_id(mid)
                 try:
                     encoded, uid = encode_to_json(mid, http_response)
