@@ -5,6 +5,7 @@
     <title>movie details</title>
     <meta http-equiv="content-type" content="text/html" ; charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--<meta name="referrer" content="no-referrer">-->
 
     <link rel="stylesheet" href="./static/layui/css/layui.css" type="text/css">
     <script type="text/javascript" src="./static/layui/layui.all.js"></script>
@@ -16,8 +17,8 @@
     <script type="text/javascript" src="./static/js/jquery.slimscroll.min.js"></script>
     <script type="text/javascript" src="./static/js/left-side-menu.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="./static/css/box.css">
     <link rel="stylesheet" type="text/css" href="./static/css/search.css">
+    <link rel="stylesheet" type="text/css" href="./static/css/box.css">
     <script type="text/javascript" src="./static/js/search.js"></script>
 
     <link rel="stylesheet" type="text/css" href="./static/css/span-line.css">
@@ -56,9 +57,9 @@
 
 </head>
 
-<body background="./static/background.png">
+<body background="../static/lizi2.gif" style='background-size: 100%; background-attachment: fixed '>
     <div class="container">
-        <div class="left-side-menu" style="float:left; position: fixed;">
+        <div class="left-side-menu" style="float:left;">
             <div class="lsm-expand-btn">
                 <div class="lsm-mini-btn">
                     <label>
@@ -132,7 +133,7 @@
                                 <li>Name</li>
                                 <li>Director</li>
                                 <li>Actor</li>
-                                <li>Descriptons</li>
+                                <li>Descriptions</li>
                             </ul>
                         </div>
                         <div id="search-hd" class="search-hd">
@@ -147,7 +148,7 @@
                             <span class="s2 pholder">Search by name</span>
                             <span class="s3 pholder">Search by director</span>
                             <span class="s4 pholder">Search by actor</span>
-                            <span class="s5 pholder">Search by descriptons</span>
+                            <span class="s5 pholder">Search by descriptions</span>
                             <button type="submit" class="btn-search" onclick="func1()"><i class="layui-icon" style="font-size: 23px">&#xe609;</i>
                             </button>
                             </form>
@@ -167,7 +168,7 @@
                         {{detail_film.name}}
                         <!-- name，对应数据库字段：Film.name -->
                     </p>
-                    <p style="line-height:2.4; color:#b2b8be; font-size:15px">
+                    <p style="line-height:2.4; color:#b2b8be; font-size:15px; font-weight:500;">
                         {% if detail_film.time %}
                             {{detail_film.time}} |
                         {% endif %}
@@ -256,7 +257,15 @@
 
                 <!-- image  -->
                 <div class="layui-col-md3">
+                    <!--{% if detail_film.image %}-->
+                    <!--    <img class="box" src="{{detail_film.image}}" width="220" height="300">-->
+                    <!--{% else %}-->
+                    <!--    <img class="box" src="./static/no picture.jpg" width="220" height="300">-->
+                    <!--{% endif %}-->
+
                     <img class="box" src="{{detail_film.image}}" onerror='this.src="./static/no picture.jpg"' width="220" height="300">
+
+                    <!--<img class="box" src="{{detail_film.image}}" width="220" height="300">-->
                     <!-- image，对应对数据字段：Film.image -->
                 </div>
 
@@ -265,46 +274,55 @@
                     <p style="line-height:3; color:#e8eddf; font-size:15px">
                         <span style="color: #f5cb5c;">&nbsp;&nbsp;OtherName : &nbsp;
                     </span>
+                    <span style="font-weight: 500;color:#b2b8be">
                         {% if detail_film.other_name %}
                             {{detail_film.other_name}}
                         {% else %}
                             No Records
                         {% endif %}
+                    </span>
                         <!-- otherName，对应数据库字段：Film.otherName  -->
                     </p>
                     <p style="line-height:3; color:#e8eddf; font-size:15px">
                         <span style="color: #f5cb5c;">&nbsp;&nbsp;Actor:  &nbsp;
-                    </span> {{film_actors}}
+                    </span>
+                    <span style="font-weight: 500;color:#b2b8be">{{film_actors}}</span>
                         <!-- Actor，对应数据库字段：Actors.actorName  -->
                     </p>
                     <p style="line-height:3; color:#e8eddf; font-size:15px">
                         <span style="color: #f5cb5c;">&nbsp;&nbsp;Director : &nbsp;
                     </span>
+                    <span style="font-weight: 500;color:#b2b8be">
                         {% if film_director.director_name %}
                             {{film_director.director_name}}
                         {% else %}
                             No Records
                         {% endif %}
+                    </span>
                         <!-- director，对应数据库字段：Directors.directorName  -->
                     </p>
                     <p style="line-height:3; color:#e8eddf; font-size:15px">
                         <span style="color: #f5cb5c;">&nbsp;&nbsp;Language : &nbsp;
-                    </span> {{film_languages}}
+                    </span>
+                    <span style="font-weight: 500;color:#b2b8be">{{film_languages}}</span>
                         <!-- Language，对应数据库字段：Film.languages  -->
                     </p>
                     <p style="line-height:3; color:#e8eddf; font-size:15px">
                         <span style="color: #f5cb5c;">&nbsp;&nbsp;Production : &nbsp;
-                    </span> {{film_productions}}
+                    </span>
+                    <span style="font-weight: 500;color:#b2b8be">{{film_productions}}</span>
                         <!-- production，对应数据库字段：Productions.productionName  -->
                     </p>
                     <p style="line-height:3; color:#e8eddf; font-size:15px">
                         <span style="color: #f5cb5c;">&nbsp;&nbsp;Key words : &nbsp;
-                    </span> 
+                    </span>
+                    <span style="font-weight: 500;color:#b2b8be">
                         {% if film_keywords %}
                             {{film_keywords}}
                         {% else %}
                             No Records
                         {% endif %}
+                    </span>
                         <!-- keywords，对应数据库字段：Film.keywords  -->
                     </p>
 
@@ -316,12 +334,17 @@
 
 
             <div class="layui-raw">
+                <p style="line-height:3; color:#f5cb5c; font-size:30px">
+                    Description
+                </p>
                 <div class="layui-col-md10" style="line-height:2.4; color: #b2b8be; font-size:15px;text-align:justify">
+                <span style="font-weight: 500;">
                 {% if detail_film.description %}
                     {{detail_film.description}}
                 {% else %}
                     No Records
                 {% endif %}
+                </span>
                     <!-- description，对应数据库字段：Film.description  -->
                 </div>
             </div>
@@ -349,11 +372,13 @@
                     Storyline
                 </p>
                 <p class="layui-col-md10" style="line-height:2.2; color: #b2b8be; font-size:15px;text-align:justify">
+                    <span style="font-weight: 500;">
                     {% if detail_film.storyline %}
                         {{detail_film.storyline}}
                     {% else %}
                         No Records
                     {% endif %}
+                    </span>
                     <!-- sotryline，对应数据库字段：Film.stroyline -->
                 </p>
             </div>
