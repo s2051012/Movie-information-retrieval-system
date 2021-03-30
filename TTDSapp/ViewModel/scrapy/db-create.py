@@ -1,5 +1,7 @@
 import pymysql
 
+# initialize database (except inverted index)
+
 conn = pymysql.connect(
     host='localhost',
     port=3306,

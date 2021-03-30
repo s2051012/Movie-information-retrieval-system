@@ -1,8 +1,10 @@
-import os, json
+import os
+import json
 import pymysql
+from pymysql.converters import escape_string  # MySQL connection
 
-# MySQL connection
-from pymysql.converters import escape_string
+# after create database, import data
+
 
 conn = pymysql.connect(
     host='localhost',

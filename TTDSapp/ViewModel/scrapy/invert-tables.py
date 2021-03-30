@@ -5,6 +5,9 @@ import MySQLdb
 import re
 
 
+# create inverted index, and import data
+
+
 def preprocessing(text: str):
     """
     :param text: a piece of text
