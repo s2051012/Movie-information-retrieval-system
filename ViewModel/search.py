@@ -260,7 +260,11 @@ class Searcher():
     def get_synonym(self, token):
         # s = Searcher()
         # print(s.get_synonym('girl'))
-        syn_set = wn.synsets(token)[0]
+        syn_set = wn.synsets(token)
+        if len(syn_set) == 0:
+            return token
+        else:
+            syn_set = syn_set[0]
         for lemma in syn_set.lemma_names():
             if lemma != token:
                 return lemma
