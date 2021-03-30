@@ -1,6 +1,3 @@
-
-
-
 import os
 from autocorrect import Speller
 from nltk.corpus import wordnet as wn
@@ -56,7 +53,7 @@ class Searcher():
     def search_by_id(self, id: str):
         """
         :param id: film id
-        :return: a dictionary represents information of this film
+        :return: a list represents information of this film
         """
         return self.database.film_information(id)
 

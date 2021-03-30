@@ -1,9 +1,13 @@
 import sys
 import pymysql
+
 sys.path.append('../')
 from config import Config
+
+
 class db_search():
     c = Config()
+
     def __init__(self, host=c.server, port=3306, user=c.user, passwd=c.password, db=c.database):
         self.db = pymysql.connect(host=host, port=port, user=user, passwd=passwd, db=db)
 

@@ -3,7 +3,6 @@ from flask_sqlalchemy import SQLAlchemy
 from exts import db
 
 
-
 class Actor(db.Model):
     __tablename__ = 'actors'
 
@@ -13,7 +12,6 @@ class Actor(db.Model):
     film_id = db.Column(db.ForeignKey('film.film_id', ondelete='CASCADE'), nullable=False, index=True, info='参演电影id')
 
     film = db.relationship('Film', primaryjoin='Actor.film_id == Film.film_id', backref='actors')
-
 
 
 class Country(db.Model):
@@ -26,7 +24,6 @@ class Country(db.Model):
     film = db.relationship('Film', primaryjoin='Country.film_id == Film.film_id', backref='countries')
 
 
-
 class Director(db.Model):
     __tablename__ = 'directors'
 
@@ -35,7 +32,6 @@ class Director(db.Model):
     film_id = db.Column(db.ForeignKey('film.film_id', ondelete='CASCADE'), nullable=False, index=True, info='导演电影id')
 
     film = db.relationship('Film', primaryjoin='Director.film_id == Film.film_id', backref='directors')
-
 
 
 class Film(db.Model):
@@ -61,7 +57,6 @@ class Film(db.Model):
     gross = db.Column(db.Text, info='票房')
 
 
-
 class Genre(db.Model):
     __tablename__ = 'genres'
 
@@ -70,7 +65,6 @@ class Genre(db.Model):
     film_id = db.Column(db.ForeignKey('film.film_id', ondelete='CASCADE'), nullable=False, index=True, info='电影id')
 
     film = db.relationship('Film', primaryjoin='Genre.film_id == Film.film_id', backref='genres')
-
 
 
 class InvertActor(db.Model):
@@ -84,7 +78,6 @@ class InvertActor(db.Model):
     film = db.relationship('Film', primaryjoin='InvertActor.film_id == Film.film_id', backref='invert_actors')
 
 
-
 class InvertDe(db.Model):
     __tablename__ = 'invert_des'
 
@@ -94,7 +87,6 @@ class InvertDe(db.Model):
     pos = db.Column(db.Text, nullable=False)
 
     film = db.relationship('Film', primaryjoin='InvertDe.film_id == Film.film_id', backref='invert_des')
-
 
 
 class InvertDirector(db.Model):
@@ -108,7 +100,6 @@ class InvertDirector(db.Model):
     film = db.relationship('Film', primaryjoin='InvertDirector.film_id == Film.film_id', backref='invert_directors')
 
 
-
 class InvertName(db.Model):
     __tablename__ = 'invert_name'
 
@@ -118,7 +109,6 @@ class InvertName(db.Model):
     pos = db.Column(db.Text, nullable=False)
 
     film = db.relationship('Film', primaryjoin='InvertName.film_id == Film.film_id', backref='invert_names')
-
 
 
 class InvertOtherName(db.Model):
@@ -132,7 +122,6 @@ class InvertOtherName(db.Model):
     film = db.relationship('Film', primaryjoin='InvertOtherName.film_id == Film.film_id', backref='invert_other_names')
 
 
-
 class Language(db.Model):
     __tablename__ = 'languages'
 
@@ -141,7 +130,6 @@ class Language(db.Model):
     film_id = db.Column(db.ForeignKey('film.film_id', ondelete='CASCADE'), nullable=False, index=True, info='电影id')
 
     film = db.relationship('Film', primaryjoin='Language.film_id == Film.film_id', backref='languages')
-
 
 
 class Production(db.Model):
@@ -154,7 +142,6 @@ class Production(db.Model):
     film = db.relationship('Film', primaryjoin='Production.film_id == Film.film_id', backref='productions')
 
 
-
 class Student(db.Model):
     __tablename__ = 'students'
 
@@ -163,7 +150,6 @@ class Student(db.Model):
     city = db.Column(db.String(50))
     addr = db.Column(db.String(200))
     pin = db.Column(db.String(10))
-
 
 
 class UserMovie(db.Model):
