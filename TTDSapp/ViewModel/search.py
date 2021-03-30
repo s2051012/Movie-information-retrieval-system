@@ -1,3 +1,6 @@
+
+
+
 import os
 from autocorrect import Speller
 from nltk.corpus import wordnet as wn
@@ -22,7 +25,7 @@ class Searcher():
         self.GENRE = ['comedy', 'sci-fi', 'horror', 'romance', 'action', 'thriller', 'drama', 'mystery', 'crime',
                       'animation', 'adventure', 'fantasy']
         self.stop_words = set()
-        file = open(os.path.join(utils.__file__, '..', 'englishST.txt'))
+        file = open(os.path.join(os.getcwd(), 'TTDSapp', 'ViewModel', 'englishST.txt'))
         for line in file:
             self.stop_words.add(line.strip())
         file.close()
@@ -55,7 +58,7 @@ class Searcher():
         :param id: film id
         :return: a dictionary represents information of this film
         """
-        return utils.film_convert_list_to_dict(self.database.film_information(id))
+        return self.database.film_information(id)
 
     def default_search(self, query: str):
         """

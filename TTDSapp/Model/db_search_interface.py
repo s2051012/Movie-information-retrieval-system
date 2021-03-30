@@ -1,10 +1,11 @@
-import MySQLdb
-
-
+import sys
+import pymysql
+sys.path.append('../')
+from config import Config
 class db_search():
-
-    def __init__(self, host='localhost', port=3306, user='root', passwd='1301410442', db='imdb_ttds'):
-        self.db = MySQLdb.connect(host=host, port=port, user=user, passwd=passwd, db=db)
+    c = Config()
+    def __init__(self, host=c.server, port=3306, user=c.user, passwd=c.password, db=c.database):
+        self.db = pymysql.connect(host=host, port=port, user=user, passwd=passwd, db=db)
 
     def film_information(self, film_id):
         cursor = self.db.cursor()
@@ -24,44 +25,62 @@ class db_search():
         sql = "select actor_name from actors where film_id = '{}';".format(film_id)
         cursor.execute(sql)
         res = cursor.fetchall()
-        actors = []
-        for row in res:
-            actors.append(row[0])
-        results.append(actors)
+        if res is None:
+            results.append('No Records')
+        else:
+            actors = []
+            for row in res:
+                actors.append(row[0])
+            results.append(actors)
 
         sql = "select director_name from directors where film_id = '{}';".format(film_id)
         cursor.execute(sql)
         res = cursor.fetchone()
-        results.append(res[0])
+        if res is None:
+            results.append('No Records')
+        else:
+            results.append(res[0])
 
         sql = "select country from countries where film_id = '{}';".format(film_id)
         cursor.execute(sql)
         res = cursor.fetchone()
-        results.append(res[0])
+        if res is None:
+            results.append('No Records')
+        else:
+            results.append(res[0])
 
         sql = "select genres from genres where film_id = '{}';".format(film_id)
         cursor.execute(sql)
         res = cursor.fetchall()
-        genres = []
-        for row in res:
-            genres.append(row[0])
-        results.append(genres)
+        if res is None:
+            results.append('No Records')
+        else:
+            genres = []
+            for row in res:
+                genres.append(row[0])
+            results.append(genres)
 
         sql = "select language from languages where film_id = '{}';".format(film_id)
         cursor.execute(sql)
         res = cursor.fetchall()
-        languages = []
-        for row in res:
-            languages.append(row[0])
-        results.append(languages)
+        if res is None:
+            results.append('No Records')
+        else:
+            languages = []
+            for row in res:
+                languages.append(row[0])
+            results.append(languages)
 
         sql = "select production_name from productions where film_id = '{}';".format(film_id)
         cursor.execute(sql)
         res = cursor.fetchall()
-        productions = []
-        for row in res:
-            productions.append(row[0])
-        results.append(productions)
+        if res is None:
+            results.append('No Records')
+        else:
+            productions = []
+            for row in res:
+                productions.append(row[0])
+            results.append(productions)
 
         return results
 
@@ -79,7 +98,7 @@ if __name__ == '__main__':
     print("Begin searching...")
     db_s = db_search()  # Set as default
 
-    info = db_s.film_information('tt0000499')
+    info = db_s.film_information('tt1146278')
     print(info)
     results = db_s.invert_data('invert_des', 'pieapple')
     print(results)

@@ -17,8 +17,8 @@
     <script type="text/javascript" src="./static/js/left-side-menu.js"></script>
 
     <link rel="stylesheet" type="text/css" href="./static/css/span-line.css">
-    <link rel="stylesheet" type="text/css" href="./static/css/box.css">
     <link rel="stylesheet" type="text/css" href="./static/css/search.css">
+    <link rel="stylesheet" type="text/css" href="./static/css/box.css">
     <script type="text/javascript" src="./static/js/search.js"></script>
     <script type="text/javascript">
     $(document).ready(function(){
@@ -52,6 +52,21 @@
             }
         }
     </script>
+    <style>
+        #div{
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            right: 0;
+            margin-right: 20px;
+            bottom: 40%;
+        }
+        #div #myBtn{
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            /*background: black;*/
+        }
+    </style>
 </head>
 
 <body background="../static/lizi2.gif" style='background-size: 100%; background-attachment: fixed '>
@@ -131,22 +146,22 @@
                                 <li>Name</li>
                                 <li>Director</li>
                                 <li>Actor</li>
-                                <li>Descriptons</li>
+                                <li>Descriptions</li>
                             </ul>
                         </div>
                         <div id="search-hd" class="search-hd">
                             <div class="search-bg"></div>
                             <form name="search_form" action="" method="POST">
-                            <input type="text" id="s1" name="s1" class="search-input">
-                            <input type="text" id="s2" name="s2" class="search-input">
-                            <input type="text" id="s3" name="s3" class="search-input">
-                            <input type="text" id="s4" name="s4" class="search-input">
-                            <input type="text" id="s5" name="s5" class="search-input">
+                            <input autocomplete="off" type="text" id="s1" name="s1" class="search-input">
+                            <input autocomplete="off" type="text" id="s2" name="s2" class="search-input">
+                            <input autocomplete="off" type="text" id="s3" name="s3" class="search-input">
+                            <input autocomplete="off" type="text" id="s4" name="s4" class="search-input">
+                            <input autocomplete="off" type="text" id="s5" name="s5" class="search-input">
                             <span class="s1 pholder">Search movies</span>
                             <span class="s2 pholder">Search by name</span>
                             <span class="s3 pholder">Search by director</span>
                             <span class="s4 pholder">Search by actor</span>
-                            <span class="s5 pholder">Search by descriptons</span>
+                            <span class="s5 pholder">Search by descriptions</span>
                             <button type="submit" class="btn-search" onclick="func1()"><i class="layui-icon" style="font-size: 23px">&#xe609;</i>
                             </button>
                             </form>
@@ -171,7 +186,13 @@
                 <!-- image  -->
                 <div class="layui-col-md3">
                     <a href="/moviedetail{{film[0]}}">
-                        <img class="box" src="{{film[9]}}" onerror='this.src="./static/no picture.jpg"' width=200 height=284 style="margin: 10%;" title="{{film[2]}}">
+                    <img class="box" src="{{film[9]}}" onerror='this.src="./static/no picture.jpg"' width=200 height=284 style="margin: 10%;" title="{{film[2]}}">
+                    <!--{% if film[9] %}-->
+                    <!--    <img class="box" src="{{film[9]}}" width=200 height=284 style="margin: 10%;" title="{{film[2]}}">-->
+                    <!--{% else %}-->
+                    <!--    <img class="box" src="./static/no picture.jpg" width=200 height=284 style="margin: 10%;" title="{{film[2]}}">-->
+                    <!--{% endif %}-->
+                        <!--<img class="box" src="{{film[9]}}" width=200 height=284 style="margin: 10%;" title="{{film[2]}}">-->
                     </a>
                     <!-- image，对应对数据字段：Film.image -->
                 </div>
@@ -180,20 +201,22 @@
                 <div class="layui-col-md9">
 
                     <div class="layui-raw" style="margin-top: 10px;">
-                        <p style="line-height:2.2; font-size:15px; color: #e8eddf;">
+                        <p style="line-height:2.2; font-size:15px; color: #b2b8be;">
                             <span style="color: #f5cb5c;">Name : &nbsp;
-                            </span> 
-                            <span class="span-line"><a href="/moviedetail{{film[0]}}">{{film[2]}}</a></span>
+                            </span>
+                            <span class="span-line" style="font-weight: 500;"><a href="/moviedetail{{film[0]}}">{{film[2]}}</a></span>
                             <!-- Name，对应数据库字段：Film.Name  -->
                         </p>
                         <p style="line-height:2.2; font-size:15px; color: #b2b8be;">
                             <span style="color: #f5cb5c;">Score:  &nbsp;
-                            </span> {{film[15]}}
+                            </span>
+                            <span style="font-weight: 500;">{{film[15]}}</span>
                             <!-- score，对应数据库字段：Film.rating_value -->
                         </p>
                         <p style="line-height:2.2; font-size:15px; color: #b2b8be;">
                             <span style="color: #f5cb5c;">Genres: &nbsp;
-                            </span> {{film[-3]}}
+                            </span>
+                            <span style="font-weight: 500;">{{film[-3]}}</span>
                             <!-- genres，对应数据库字段：Film.genres -->
                         </p>
                         <p style="line-height:2.2; font-size:15px; color: #b2b8be;">
@@ -274,32 +297,56 @@
                     <!--    </div>-->
                     <!--    <br>-->
                     <!--</div>-->
-                                                                                                                                      
                 </div>
             </div>
             <br>
             <br>
             {% endfor %}
 
-            <hr style="background-color:rgba(12, 12, 11, 0)">
-            <hr style="background-color:rgba(12, 12, 11, 0)">
-            <hr style="background-color:rgba(12, 12, 11, 0)">
-            <hr style="background-color:rgba(12, 12, 11, 0)">
-            <hr style="background-color:rgba(12, 12, 11, 0)">
 
-
-            
-
-            <hr style="background-color:rgba(12, 12, 11, 0)">
-            <hr style="background-color:rgba(12, 12, 11, 0)">
-            <hr style="background-color:rgba(12, 12, 11, 0)">
-            <hr style="background-color:rgba(12, 12, 11, 0)">
+            <br>
+            <br>
+            <br>
+            <br>
 
 
             <br>
             <br>
             <br>
             <br>
+        </div>
+                <script type="text/javascript">
+        window.onscroll = function () {
+            var oDiv = document.getElementById("div");
+            var scrollTop = document.documentElement.scrollTop||document.body.scrollTop;
+            //oDiv.style.top = (document.documentElement.clientHeight-oDiv.offsetHeight)/2+scrollTop+'px';
+            startMove(parseInt((document.documentElement.clientHeight-oDiv.offsetHeight)/2+scrollTop));
+        };
+        var time = null;
+        function startMove(iTarget){
+            var oDiv = document.getElementById("div");
+            clearInterval(time);
+            time = setInterval(function(){
+                var speed = (iTarget-oDiv.offsetTop)/6;
+                speed = speed>0?Math.ceil(speed):Math.floor(speed);
+                if(oDiv.offsetTop == iTarget){
+                    clearInterval(time)
+                }else{
+                    oDiv.style.top = oDiv.offsetTop+speed+'px';
+                }
+            },30)
+        }
+        </script>
+        <script>
+            // 当网页向下滑动 20px 出现"返回顶部" 按钮
+            // 点击按钮，返回顶部
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+        </script>
+        <div id="div">
+            <button class="layui-btn" onclick="topFunction()" id="myBtn"style="color: white;">Back to Top</button>
         </div>
     </div>
 
