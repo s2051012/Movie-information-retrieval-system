@@ -1,17 +1,16 @@
 import pymysql
 
 conn = pymysql.connect(
-        host = 'localhost',
-        port = 3306,
-        user = 'root',
-        passwd = '1301410442',
-        db = 'imdb_ttds',
-        charset = 'utf8',
-    )
+    host='localhost',
+    port=3306,
+    user='root',
+    passwd='1301410442',
+    db='imdb_ttds',
+    charset='utf8',
+)
 cur = conn.cursor()
 
 sql_list = []
-
 
 # Create table sqls
 sql_list.append("CREATE TABLE `actors` ("

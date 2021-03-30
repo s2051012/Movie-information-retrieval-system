@@ -44,7 +44,7 @@ def create_word_dir():
             for f_name in name_list:
                 # print(row[1])
                 f_sql = "INSERT INTO INVERT_NAME(film_id, name_token, pos) VALUES ('%s', '%s', '%s')" % \
-                      (row[0], f_name, f_index)
+                        (row[0], f_name, f_index)
 
                 try:
                     count += 1
@@ -134,7 +134,7 @@ def create_word_dir():
             dir_index = 1
             for director in director_list:
                 dir_sql = "INSERT INTO INVERT_DIRECTOR(film_id, director_token, pos) VALUES ('%s', '%s', '%s')" % \
-                        (row[0], director, dir_index)
+                          (row[0], director, dir_index)
 
                 try:
                     count += 1
@@ -245,6 +245,3 @@ for row in results:
         break
     # break
 '''
-
-
-

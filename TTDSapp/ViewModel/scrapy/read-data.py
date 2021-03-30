@@ -5,17 +5,16 @@ import pymysql
 from pymysql.converters import escape_string
 
 conn = pymysql.connect(
-        host = 'localhost',
-        port = 3306,
-        user = 'root',
-        passwd = '1301410442',
-        db = 'imdb_ttds',
-        charset = 'utf8',
-    )
+    host='localhost',
+    port=3306,
+    user='root',
+    passwd='1301410442',
+    db='imdb_ttds',
+    charset='utf8',
+)
 cur = conn.cursor()
 
 sql = ""  # init sql
-
 
 json_path = "../raw-data-imdb/json"
 user_path = "../raw-data-imdb/user"
@@ -152,8 +151,6 @@ for js in json_files:
 
         except:
             print(js)
-
-
 
 # Extract user favorite films
 print("Inserting user json files... {} in total".format(len(user_files)))
