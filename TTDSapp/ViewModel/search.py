@@ -9,13 +9,13 @@ from collections import OrderedDict
 class Searcher():
     """
     Interface:
-    boolean_search_by_genre 按照给定genre进行过滤
-    search_by_id 拿到一个电影的全部信息
-    default_search 默认搜索
-    search_by_film_name 按电影名检索
-    search_by_actor 按演员检索
-    search_by_director 按导演检索
-    search_by_description 按描述检索
+    boolean_search_by_genre
+    search_by_id
+    default_search
+    search_by_film_name
+    search_by_actor
+    search_by_director
+    search_by_description
     """
 
     def __init__(self):
