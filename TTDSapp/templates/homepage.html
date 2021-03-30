@@ -16,8 +16,8 @@
     <script type="text/javascript" src="static/js/jquery.slimscroll.min.js"></script>
     <script type="text/javascript" src="static/js/left-side-menu.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="static/css/box.css">
     <link rel="stylesheet" type="text/css" href="static/css/search.css">
+    <link rel="stylesheet" type="text/css" href="static/css/box.css">
     <script type="text/javascript" src="static/js/search.js"></script>
     <script type="text/javascript">
     $(document).ready(function(){
@@ -50,11 +50,10 @@
                 document.search_form.submit();
             }
         }
-
     </script>
 </head>
 
-<body background="static/background.png">
+<body background="../static/lizi2.gif" style='background-size: 100%; background-attachment: fixed '>
     <div class="container">
         <div class="left-side-menu" style="float:left;">
             <div class="lsm-expand-btn">
@@ -131,7 +130,7 @@
                                 <li>Name</li>
                                 <li>Director</li>
                                 <li>Actor</li>
-                                <li>Descriptons</li>
+                                <li>Descriptions</li>
                             </ul>
                         </div>
                         <div id="search-hd" class="search-hd">
@@ -146,7 +145,7 @@
                             <span class="s2 pholder">Search by name</span>
                             <span class="s3 pholder">Search by director</span>
                             <span class="s4 pholder">Search by actor</span>
-                            <span class="s5 pholder">Search by descriptons</span>
+                            <span class="s5 pholder">Search by descriptions</span>
                             <button type="submit" class="btn-search" onclick="func1()"><i class="layui-icon" style="font-size: 23px">&#xe609;</i>
                             </button>
                             </form>
@@ -175,7 +174,7 @@
                         <div>
                             {% for n in range(7*i, 7*i+6) %}
                             <div class="layui-col-md2">
-                                <a href="{{ranking_films[n].imdb_url}}">
+                                <a href="{{url_for('show_movie_detail', film_id = ranking_films[n].film_id)}}">
                                     <!-- more_movie_details，对应数据库字段 url：Film.imdb_url -->
                                     <img class="box" src="{{ranking_films[n].image}}" width="175" height="280">
                                     <!-- image，对应对数据字段：Film.image -->
