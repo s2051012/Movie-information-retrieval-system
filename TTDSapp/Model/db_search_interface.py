@@ -94,8 +94,21 @@ class db_search():
         cursor.execute(sql)
         return cursor.fetchall()
 
+
     def db_close(self):
         self.db.close()
+
+    def top_film_info(self):
+        #c = Config()
+        # db2 = pymysql.connect(host=c.server, port=3306, user=c.user, passwd=c.password, db=c.database)
+        cursor = self.db.cursor()
+        sql = "select * from (select * from film limit 50000) as t where rating_value > 9;"
+        cursor.execute(sql)
+        res = cursor.fetchall()
+        topmovies = []
+        for i in res:
+            topmovies.append(i)
+        return topmovies
 
 
 if __name__ == '__main__':

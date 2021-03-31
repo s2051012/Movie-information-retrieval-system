@@ -174,9 +174,9 @@
                         <div>
                             {% for n in range(7*i, 7*i+6) %}
                             <div class="layui-col-md2">
-                                <a href="{{url_for('show_movie_detail', film_id = ranking_films[n].film_id)}}">
+                                <a href="{{url_for('show_movie_detail', film_id = ranking_films[n][0])}}">
                                     <!-- more_movie_details，对应数据库字段 url：Film.imdb_url -->
-                                    <img class="box" src="{{ranking_films[n].image}}" width="175" height="280">
+                                    <img class="box" src="{{ranking_films[n][9]}}" width="175" height="280">
                                     <!-- image，对应对数据字段：Film.image -->
                                 </a>
                             </div>

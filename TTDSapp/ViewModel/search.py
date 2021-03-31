@@ -57,6 +57,9 @@ class Searcher():
         """
         return self.database.film_information(id)
 
+    def search_top_film(self):
+        return self.database.top_film_info()
+
     def default_search(self, query: str):
         """
         :param query: query text

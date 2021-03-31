@@ -16,15 +16,14 @@ db.create_all(app=app)
 p = 0
 
 import nltk
-
-
 # nltk.download()
 
 @app.route('/')
 def homepage_films():
-    ranking_films = Film.query.order_by(Film.rating_value.desc()).limit(24)
+    s = Searcher()
+    ranking_films =  s.search_top_film()
     return render_template('homepage.html', ranking_films=ranking_films)
-    # return render_template('test.html')
+    #return render_template('test.html')
 
 
 @app.route('/searchfilmsDefault', methods=['POST', 'GET'])
