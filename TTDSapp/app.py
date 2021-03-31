@@ -23,7 +23,6 @@ def homepage_films():
     s = Searcher()
     ranking_films =  s.search_top_film()
     return render_template('homepage.html', ranking_films=ranking_films)
-    #return render_template('test.html')
 
 
 @app.route('/searchfilmsDefault', methods=['POST', 'GET'])
