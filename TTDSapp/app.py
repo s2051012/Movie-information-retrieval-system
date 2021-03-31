@@ -16,12 +16,14 @@ db.create_all(app=app)
 p = 0
 
 import nltk
+
+
 # nltk.download()
 
 @app.route('/')
 def homepage_films():
     s = Searcher()
-    ranking_films =  s.search_top_film()
+    ranking_films = s.search_top_film()
     return render_template('homepage.html', ranking_films=ranking_films)
 
 
